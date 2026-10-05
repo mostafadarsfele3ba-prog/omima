@@ -1,0 +1,2092 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>درس كان وأخواتها - الصف الأول الثانوي</title>
+    <!-- استدعاء خط احترافي -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1d4ed8;      
+            --primary-light: #3b82f6; 
+            --secondary: #1e3a8a;    
+            --success: #10b981;      
+            --danger: #ef4444;       
+            --warning: #f59e0b;      
+            --dark: #1e293b;         
+            --light: #f8fafc;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Cairo', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #f0f5ff;
+            background-image: radial-gradient(#bfd2f5 1.5px, transparent 1.5px);
+            background-size: 25px 25px;
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .hidden { display: none !important; }
+        
+        /* --- الهيدر الرئيسي --- */
+        .header-main {
+            background: linear-gradient(135deg, #0b1a46, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px 20px 90px 20px; 
+            text-align: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title-line1 {
+            font-size: clamp(1.1rem, 4vw, 1.5rem); 
+            font-weight: 700;
+            color: #dbeafe;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 1px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .title-line2 {
+            font-size: clamp(2.5rem, 10vw, 4.5rem); 
+            font-weight: 900;
+            background: linear-gradient(to right, #fde047, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.5));
+            line-height: 1.1;
+        }
+
+        .header-main h2 { font-size: clamp(1rem, 3vw, 1.3rem); font-weight: 600; color: #eff6ff; margin-bottom: 8px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);}
+        .header-main p { font-size: clamp(0.9rem, 2.5vw, 1.1rem); font-weight: 600; background: rgba(0,0,0,0.3); display: inline-block; padding: 6px 20px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 4px 6px rgba(0,0,0,0.1);}
+
+        .header-wave {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: auto;
+            z-index: 1;
+        }
+
+        /* --- الأزرار --- */
+        .btn {
+            background: linear-gradient(to bottom, var(--primary-light), var(--primary));
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-bottom: 3px solid rgba(0,0,0,0.3);
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.2); }
+        .btn:active { transform: translateY(2px); border-bottom: 0px; margin-top: 3px; }
+        .btn-correct { filter: brightness(1.2); pointer-events: none; border-bottom-width: 0; transform: translateY(2px);}
+        .btn-wrong { filter: brightness(0.8); pointer-events: none; border-bottom-width: 0; transform: translateY(2px);}
+
+        /* --- الشاشة الرئيسية --- */
+        #home-screen {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .grid-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1000px;
+            padding-bottom: 80px;
+        }
+
+        .menu-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.025);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .menu-card::before {
+            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .menu-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border-color: rgba(59, 130, 246, 0.3); }
+        .menu-card:hover::before { opacity: 1; }
+        
+        .menu-card .icon-container {
+            width: 80px; height: 80px;
+            margin: 0 auto 15px auto;
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: inset 0 3px 6px rgba(255,255,255,0.8), 0 4px 8px rgba(0,0,0,0.05);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .menu-card .icon-container svg {
+            width: 40px; height: 40px; stroke: #1d4ed8; fill: none;
+            stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+        }
+        .menu-card:hover .icon-container { transform: scale(1.1) rotate(10deg); }
+        .menu-card h3 { font-size: 1.4rem; color: var(--dark); font-weight: 800; margin-bottom: 8px;}
+        .menu-card p { font-size: 1rem; color: #64748b; font-weight: 600;}
+
+        /* --- شاشة اللعب --- */
+        #game-screen {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-nav {
+            background: white;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+        }
+        .back-btn { background: #e2e8f0; color: var(--dark); border-bottom: 3px solid #cbd5e1; padding: 8px 15px;}
+        #game-progress { background: #3b82f6; color: white; padding: 6px 15px; border-radius: 20px;}
+        
+        .game-container {
+            flex: 1;
+            padding: 0 20px 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .question-box {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 16px;
+            text-align: center;
+            font-size: clamp(1.2rem, 4vw, 1.6rem);
+            font-weight: 800;
+            color: #1d4ed8;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            border-right: 8px solid #1e3a8a;
+            line-height: 1.6;
+        }
+
+        .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-2px, 0, 0); }
+            20%, 80% { transform: translate3d(4px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+            40%, 60% { transform: translate3d(6px, 0, 0); }
+        }
+
+        /* MCQ Style */
+        .options-grid { display: flex; flex-direction: column; gap: 15px; }
+        .options-grid .btn { padding: 18px; font-size: clamp(1.1rem, 3.5vw, 1.4rem); text-align: right; justify-content: flex-start; border-radius: 12px;}
+
+        /* True/False Style */
+        .tf-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+
+        /* Bubbles Style */
+        .bubbles-area {
+            position: relative; height: 400px;
+            background: linear-gradient(to bottom, #0b1a46, #1d4ed8);
+            border-radius: 16px; overflow: hidden;
+            border: 4px solid #3b82f6; margin-top: 10px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+        .bubble {
+            position: absolute;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(219,234,254,0.9));
+            color: #1d4ed8;
+            border: 2px solid #ffffff;
+            padding: 10px 5px;
+            border-radius: 30px;
+            font-weight: 800; font-size: clamp(0.85rem, 2vw, 1.05rem);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.2), inset -4px -4px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            width: 22%;
+            transition: transform 0.2s, background 0.2s;
+            z-index: 5;
+        }
+        .bubble:hover { transform: scale(1.05); }
+        .bubble::after {
+            content: ''; position: absolute; top: 10%; left: 15%;
+            width: 20%; height: 20%; background: rgba(255,255,255,0.8);
+            border-radius: 50%; filter: blur(2px);
+        }
+
+        /* Shooting Style */
+        .shooting-area {
+            position: relative; height: 400px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect fill="%23fff7ed" width="100%" height="100%"/><circle fill="%23fed7aa" cx="20%" cy="30%" r="50"/><circle fill="%23fed7aa" cx="80%" cy="60%" r="70"/><circle fill="%23fed7aa" cx="50%" cy="80%" r="40"/></svg>') no-repeat center center;
+            background-size: cover; border-radius: 16px; overflow: hidden;
+            border: 4px solid #3b82f6; margin-top: 10px; box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+        }
+        .target-bird {
+            position: absolute; background: white; color: var(--dark);
+            padding: 10px 20px; border-radius: 30px; font-weight: 800; font-size: clamp(0.95rem, 3vw, 1.15rem);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15); cursor: crosshair;
+            border: 3px solid var(--warning); white-space: nowrap; transition: background 0.2s;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .target-bird:hover { transform: scale(1.05); background: #fffbeb; }
+
+        /* Genius Challenge Style */
+        .genius-wrap {
+            background: linear-gradient(135deg, #431407, #9a3412, #ea580c);
+            border-radius: 16px; padding: 20px; margin-top: 10px;
+            border: 4px solid #fdba74; box-shadow: inset 0 0 25px rgba(0,0,0,0.4), 0 10px 20px rgba(234,88,12,0.35);
+        }
+        .genius-timer-track {
+            width: 100%; height: 14px; background: rgba(0,0,0,0.35);
+            border-radius: 10px; overflow: hidden; margin-bottom: 18px;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        .genius-timer-bar {
+            height: 100%; width: 100%;
+            background: linear-gradient(to right, #fde047, #f59e0b, #ef4444);
+            border-radius: 10px;
+            transition: width 0.1s linear;
+        }
+        .genius-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        @media (max-width: 600px) { .genius-options { grid-template-columns: 1fr; } }
+        .genius-options .btn {
+            padding: 16px 10px; font-size: clamp(1rem, 3vw, 1.25rem);
+            background: linear-gradient(to bottom, #fb923c, #ea580c);
+            border-bottom: 3px solid #7c2d12; border-radius: 14px; min-height: 70px;
+        }
+        .genius-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(253, 224, 71, 0.15); color: #fde047;
+            font-weight: 800; padding: 6px 16px; border-radius: 20px;
+            border: 1px solid rgba(253,224,71,0.4); margin-bottom: 12px; font-size: 0.95rem;
+        }
+
+        /* Modal Overlay */
+        .overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(4px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .overlay.active { opacity: 1; pointer-events: all; }
+        .modal {
+            background: white; padding: 40px; border-radius: 25px;
+            text-align: center; max-width: 90%; width: 400px;
+            transform: scale(0.7) translateY(50px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+        .overlay.active .modal { transform: scale(1) translateY(0); }
+        .modal-icon { display: flex; justify-content: center; margin-bottom: 20px; }
+
+        /* Summary Errors Scrolling */
+        .errors-list::-webkit-scrollbar { width: 8px; }
+        .errors-list::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
+        .errors-list::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+        .errors-list::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* الفوتر (Footer) */
+        .footer-main {
+            background: var(--dark); color: #cbd5e1;
+            text-align: center; padding: 25px 20px; margin-top: auto;
+            border-top: 4px solid var(--primary);
+        }
+        .footer-main p { margin: 5px 0; font-size: 1.1rem; font-weight: 600;}
+        .footer-main .designer { font-size: 1rem; color: #94a3b8; font-weight: 400;}
+
+        /* Confetti effect */
+        .confetti {
+            position: fixed; top: -10px; width: 12px; height: 12px; z-index: 9999;
+            animation: fall linear forwards; border-radius: 3px;
+        }
+        @keyframes fall { to { transform: translateY(110vh) rotate(720deg); opacity: 0; } }
+
+        .home-link {
+            position: absolute; top: 14px; right: 14px; z-index: 5;
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(255,255,255,0.15); color: #fff; text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.35); border-radius: 30px;
+            padding: 7px 16px; font-weight: 700; font-size: 0.95rem;
+            backdrop-filter: blur(4px); transition: background .2s;
+        }
+        .home-link:hover { background: rgba(255,255,255,0.28); }
+        .school-name { font-size: clamp(1.9rem, 7vw, 3.6rem) !important; }
+        .header-main { padding-top: 56px !important; padding-bottom: 140px !important; }
+        @media (max-width: 600px) { .header-main { padding-bottom: 110px !important; } }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر -->
+    <header class="header-main" id="main-header">
+        <a class="home-link" href="./index.html"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg> الصفحة الرئيسية</a>
+        <div class="header-content">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap;">
+                
+                <!-- النصوص -->
+                <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <h1 class="title-line1">
+                        درس 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fde047" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                        لعبة
+                    </h1>
+                    <h1 class="title-line2 school-name">أميمة عبدالوهاب عبدالرحمن</h1>
+                    <h2>الصف الأول الثانوي - الفصل الدراسي الأول - درس كان وأخواتها</h2>
+                    <p style="margin-top: 10px;">القواعد النحوية</p>
+                </div>
+            </div>
+        </div>
+        <!-- تموجات زخرفية -->
+        <svg class="header-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#f0f5ff" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,170.7C960,160,1056,192,1152,208C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+    </header>
+
+    <!-- الشاشة الرئيسية -->
+    <div id="home-screen">
+        <div class="grid-menu" id="menu-grid">
+            <!-- سيتم حقن البطاقات هنا برمجياً -->
+        </div>
+    </div>
+
+    <!-- شاشة اللعب -->
+    <div id="game-screen" class="hidden">
+        <div class="game-nav">
+            <button class="btn back-btn" onclick="returnToMenu()">
+                <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                رجوع
+            </button>
+            <strong id="game-title">عنوان اللعبة</strong>
+            <span id="game-progress">1 / 25</span>
+        </div>
+        <div class="game-container" id="game-container">
+            <!-- سيتم حقن الأسئلة هنا برمجياً -->
+        </div>
+    </div>
+
+    <!-- نافذة الملاحظات السريعة -->
+    <div class="overlay" id="feedback-modal">
+        <div class="modal">
+            <div class="modal-icon" id="feedback-icon"></div>
+            <h2 id="feedback-title" style="font-size: 2.5rem; font-weight: 900;">إجابة صحيحة!</h2>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer class="footer-main" id="main-footer">
+        <p>جميع الحقوق محفوظة &copy; | الأستاذة / أميمة عبدالوهاب عبدالرحمن</p>
+    </footer>
+
+<script>
+    const LESSON_NAME = "كان وأخواتها";
+    const allGamesData = [
+  {
+    "id": "mcq",
+    "title": "أفهم القاعدة",
+    "type": "mcq",
+    "desc": "النواسخ الفعلية: كان وأخواتها - المعاني والشروط والأحكام",
+    "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><polygon points=\"11 5 6 9 2 9 2 15 6 15 11 19 11 5\"></polygon><path d=\"M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07\"></path></svg>",
+    "questions": [
+      {
+        "q": "ما المقصود بالناسخ؟",
+        "options": [
+          "ما يزيل حكم المبتدأ والخبر ويغيّره",
+          "ما يجزم الفعل المضارع",
+          "ما ينصب الفعل المضارع",
+          "ما يجرّ الاسم بعده"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "ما عمل (كان وأخواتها)؟",
+        "options": [
+          "ترفع المبتدأ اسمًا لها وتنصب الخبر خبرًا لها",
+          "تنصب المبتدأ وترفع الخبر",
+          "تنصب المبتدأ والخبر معًا",
+          "ترفع المبتدأ والخبر معًا"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "عدد أفعال كان وأخواتها:",
+        "options": [
+          "ثلاثة عشر فعلًا",
+          "عشرة أفعال",
+          "سبعة أفعال",
+          "خمسة عشر فعلًا"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "ما معنى الفعل (صار)؟",
+        "options": [
+          "التحوّل من حال إلى حال",
+          "النفي في الزمن الحاضر",
+          "الاستمرار مدة محدودة",
+          "قرب وقوع الخبر"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "ما شرط عمل (ما زال - ما برح - ما فتئ - ما انفك)؟",
+        "options": [
+          "أن يسبقها نفي أو شبه نفي",
+          "أن تسبقها (ما) المصدرية الظرفية",
+          "أن تأتي بصيغة الأمر",
+          "ألا يتقدم خبرها"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "ما شرط عمل (دام) عمل كان؟",
+        "options": [
+          "أن تسبقها (ما) المصدرية الظرفية",
+          "أن يسبقها نفي",
+          "أن تأتي في صيغة المضارع",
+          "أن يكون خبرها جملة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "ماذا يفيد الفعل (ليس)؟",
+        "options": [
+          "نفي اتصاف اسمه بخبره في الزمن الحاضر",
+          "التحول من حال إلى حال",
+          "الاستمرار إلى زمن التكلم",
+          "الاتصاف في المساء"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "الأفعال التي تتصرف تصرفًا كاملًا (ماضٍ ومضارع وأمر):",
+        "options": [
+          "كان - أصبح - ظل - صار",
+          "ما زال - ما برح - ما فتئ",
+          "ليس - ما دام",
+          "ما انفك - ليس - ما فتئ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "لماذا لا يأتي الأمر من (زال - برح - فتئ - انفك)؟",
+        "options": [
+          "للزوم النفي لها",
+          "لأنها جامدة لا تتصرف",
+          "لأنها تامة دائمًا",
+          "لأن خبرها جملة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "الفعلان الجامدان من أخوات كان هما:",
+        "options": [
+          "ليس - ما دام",
+          "كان - صار",
+          "ما زال - ما برح",
+          "أصبح - أمسى"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "من صور اسم كان أن يأتي مصدرًا مؤولًا كما في:",
+        "options": [
+          "كان واضحًا أنك مريض",
+          "كان الفرس سهلًا",
+          "كنت متفوقًا",
+          "ما أصبح كسولًا إلا أنت"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(سيظل الشعب الفلسطيني يدافع عن أرضه). نوع خبر (يظل):",
+        "options": [
+          "جملة فعلية",
+          "جملة اسمية",
+          "مفرد",
+          "شبه جملة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(أضحت المقاومة شوكتها قوية). نوع خبر (أضحى):",
+        "options": [
+          "جملة اسمية",
+          "جملة فعلية",
+          "مفرد",
+          "شبه جملة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(صارت الطائرة بين السحاب). نوع خبر (صار):",
+        "options": [
+          "شبه جملة (ظرف)",
+          "مفرد",
+          "جملة اسمية",
+          "جملة فعلية"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "ما الفعل التام؟",
+        "options": [
+          "ما يكتفي بمرفوعه ولا يحتاج إلى خبر",
+          "ما يحتاج إلى اسم وخبر",
+          "ما لا يأتي منه مضارع",
+          "ما يكون خبره جملة دائمًا"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(كان الله ولا شيء سواه). معنى (كان) ونوعها:",
+        "options": [
+          "وُجِد - تامة",
+          "صار - ناقصة",
+          "أصبح - ناقصة",
+          "ثبت - ناقصة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "الأفعال الملازمة للنقص (لا تأتي تامة):",
+        "options": [
+          "ما فتئ - ما زال - ليس",
+          "كان - ظل - بات",
+          "أصبح - أمسى - صار",
+          "ما دام - ما برح - ما انفك"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(ما زال الأثرُ من الثوب). (زال) هنا تامة، ومضارعها:",
+        "options": [
+          "يزول",
+          "يزال",
+          "يزيل",
+          "يزل"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(كان الدرس سهلًا). عند وضع (ما زال) مكان (كان):",
+        "options": [
+          "ما زال الدرس سهلًا",
+          "ما زال الدرسَ سهلًا",
+          "ما زال الدرسُ سهلٌ",
+          "زال الدرس سهلًا"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(أنتِ مقصرة). عند دخول (ليس) وخطاب المفردة المؤنثة نقول:",
+        "options": [
+          "لستِ مقصرة",
+          "ليس أنتِ مقصرة",
+          "ليستِ أنتِ مقصرة",
+          "لستُنّ مقصرة"
+        ],
+        "ans": 0
+      }
+    ]
+  },
+  {
+    "id": "bubbles",
+    "title": "الفقاعات المتساقطة",
+    "type": "bubbles",
+    "desc": "حدّد اسم الناسخ وخبره ونوعه بسرعة",
+    "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M21.21 15.89A10 10 0 1 1 8 2.83\"></path><path d=\"M22 12A10 10 0 0 0 12 2v10z\"></path></svg>",
+    "questions": [
+      {
+        "q": "(أصبح الجو حارًا). خبر أصبح:",
+        "options": [
+          "حارًا",
+          "الجو",
+          "أصبح",
+          "ضمير مستتر"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(بات الحارس قلقًا). اسم بات:",
+        "options": [
+          "الحارس",
+          "قلقًا",
+          "ضمير مستتر",
+          "تاء التأنيث"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(كنت متفوقًا). اسم كان:",
+        "options": [
+          "تاء الفاعل",
+          "متفوقًا",
+          "ضمير مستتر",
+          "لا يوجد"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(طلابنا أصبحوا متفوقين). اسم أصبح:",
+        "options": [
+          "واو الجماعة",
+          "طلابنا",
+          "متفوقين",
+          "ضمير مستتر"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(التكنولوجيا أضحت تنتشر). اسم أضحى:",
+        "options": [
+          "ضمير مستتر",
+          "التكنولوجيا",
+          "تاء التأنيث",
+          "تنتشر"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(كان في الفصل طلابُه). اسم كان:",
+        "options": [
+          "طلابه",
+          "في الفصل",
+          "ضمير مستتر",
+          "الفصل"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(وكان حقًّا علينا نصرُ المؤمنين). إعراب (نصر):",
+        "options": [
+          "اسم كان مؤخر",
+          "خبر كان",
+          "مبتدأ مؤخر",
+          "فاعل"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(بات الجنديان ساهرين). علامة رفع (الجنديان):",
+        "options": [
+          "الألف",
+          "الضمة",
+          "الواو",
+          "ثبوت النون"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(ظل المؤمنون على العهد). علامة رفع (المؤمنون):",
+        "options": [
+          "الواو",
+          "الضمة",
+          "الألف",
+          "ثبوت النون"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(أصبح أخوك مجتهدًا). علامة رفع (أخوك):",
+        "options": [
+          "الواو",
+          "الضمة",
+          "الألف",
+          "الضمة المقدرة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(لم يزل الأقصى يستغيث). علامة رفع (الأقصى):",
+        "options": [
+          "ضمة مقدرة للتعذر",
+          "ضمة مقدرة للثقل",
+          "الضمة الظاهرة",
+          "الواو"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(ليس القاضي مقصرًا). علامة رفع (القاضي):",
+        "options": [
+          "ضمة مقدرة للثقل",
+          "ضمة مقدرة للتعذر",
+          "الضمة الظاهرة",
+          "الياء"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(أكثر المتكاسلين أصبحوا مساكين). علامة نصب (مساكين):",
+        "options": [
+          "الفتحة الظاهرة",
+          "الياء",
+          "الفتحة المقدرة",
+          "الكسرة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(ما زلنا ذوي صبر). علامة نصب (ذوي):",
+        "options": [
+          "الياء",
+          "الفتحة",
+          "الألف",
+          "الكسرة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(سأصبر ما دام الحق قائمًا). نوع (ما):",
+        "options": [
+          "مصدرية ظرفية",
+          "نافية",
+          "موصولة",
+          "كافة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(ما زال الأمل موجودًا). نوع (ما):",
+        "options": [
+          "نافية",
+          "مصدرية ظرفية",
+          "موصولة",
+          "كافة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(تأوي الطيور إلى أعشاشها فتبيت). (تبيت):",
+        "options": [
+          "فعل تام",
+          "فعل ناقص",
+          "فعل جامد",
+          "حرف"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(أضحى للعدل رجالٌ يذودون عنه). اسم أضحى:",
+        "options": [
+          "رجال",
+          "للعدل",
+          "يذودون",
+          "ضمير مستتر"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(كانت لنا عند السياج شجيرةٌ). خبر كان:",
+        "options": [
+          "لنا",
+          "شجيرة",
+          "الغناء",
+          "السياج"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(ليس الزمانُ وإن حرصتَ مسالمًا). خبر ليس:",
+        "options": [
+          "مسالمًا",
+          "الزمان",
+          "حرصت",
+          "ضمير مستتر"
+        ],
+        "ans": 0
+      }
+    ]
+  },
+  {
+    "id": "shoot",
+    "title": "التنشين والاصطياد",
+    "type": "shooting",
+    "desc": "طبّق قاعدة كان وأخواتها على الجمل",
+    "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><circle cx=\"12\" cy=\"12\" r=\"6\"></circle><circle cx=\"12\" cy=\"12\" r=\"2\"></circle></svg>",
+    "questions": [
+      {
+        "q": "أدخل (كان) على: (الماء صافٍ):",
+        "options": [
+          "كان الماءُ صافيًا",
+          "كان الماءُ صافٍ",
+          "كان الماءُ صافي",
+          "كان الماءَ صافيًا"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "أدخل (ما فتئ) على: (ذو العلم مكرّم):",
+        "options": [
+          "ما فتئ ذو العلم مكرّمًا",
+          "ما فتئ ذا العلم مكرّمًا",
+          "ما فتئ ذي العلم مكرّمًا",
+          "ما فتئ ذو العلم مكرّمٌ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "الجملة الصحيحة نحويًّا:",
+        "options": [
+          "ما زال أخواك يجتهدان",
+          "ما زال أخواك مجتهدان",
+          "ما زال أخويك مجتهدين",
+          "ما زال أخويك يجتهدان"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "الجملة الصحيحة نحويًّا:",
+        "options": [
+          "صار أبوك ذا فضل عظيم",
+          "صار أباك ذو فضل عظيمًا",
+          "صار أبوك ذو فضل عظيمًا",
+          "صار أباك ذا فضل عظيم"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(ما زلتم ذوي صبر). بحذف الفعل الناسخ:",
+        "options": [
+          "أنتم ذوو صبر",
+          "أنتم ذوي صبر",
+          "هم ذوو صبر",
+          "نحن ذوو صبر"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "خبر الناسخ منصوب بالفتحة في:",
+        "options": [
+          "ما زالت الصلاة ذاتَ مكانة",
+          "يا عمر أصبحت ذا همة",
+          "صار ذوو الهمة مقدّرين",
+          "لسنا فاقدي حريات"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "خبر الناسخ مفرد في:",
+        "options": [
+          "صار الطالب آمنًا",
+          "صار المستقبل أساسه العلم",
+          "سيكون السفر غدًا",
+          "صار الطالب في أمان"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "فعل ناقص في:",
+        "options": [
+          "العامل المخلص لم يكُ مقصرًا",
+          "لن تزول قدما عبد",
+          "لم تنفك عقدة الحبل",
+          "لم يبرح الجندي مكانه"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "فعل ناسخ ورد تامًّا في:",
+        "options": [
+          "اجتهدوا حتى تكون الثمرة المرجوة",
+          "ما زالت في قلوبنا مكانة",
+          "أصبح العصر عصر التخصص",
+          "ولا يزالون مختلفين"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(لا تكن ليّنًا فتُعصر، ولا تكن صلبًا فتُكسر). إعراب (صلبًا):",
+        "options": [
+          "خبر تكن",
+          "حال",
+          "مفعول به",
+          "تمييز"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(كان عمر عادلًا حكمه، مهيبةً مكانته). إعراب (مهيبة):",
+        "options": [
+          "خبر كان",
+          "حال",
+          "نعت",
+          "بدل"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "قال تعالى: (وإن كان ذو عسرة). إعراب (ذو):",
+        "options": [
+          "فاعل مرفوع بالواو",
+          "اسم كان مرفوع بالواو",
+          "فاعل مرفوع بالضمة",
+          "اسم كان مرفوع بالضمة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(يشارك المسلمون المسيحيين حتى لا تكون فتنة). (فتنة):",
+        "options": [
+          "فاعل مرفوع",
+          "اسم تكون مرفوع",
+          "خبر تكون منصوب",
+          "مضاف إليه"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(كان الله ولا شيء معه). إعراب لفظ الجلالة:",
+        "options": [
+          "فاعل",
+          "اسم كان",
+          "خبر كان",
+          "مبتدأ مؤخر"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(يكون الاطمئنان حيث يكون السلام). إعراب ما بعد (يكون) على الترتيب:",
+        "options": [
+          "اسم يكون - فاعل",
+          "فاعل في الموضعين",
+          "اسم يكون في الموضعين",
+          "فاعل - اسم يكون"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(ما زالت النظافة من الإيمان) - (ما زالت النظافة عن بيوتنا). (النظافة):",
+        "options": [
+          "اسم زال - فاعل",
+          "فاعل - اسم زال",
+          "اسم زال في الجملتين",
+          "فاعل في الجملتين"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(اجعل هدفك ما دامت الحياة إرضاءَ ربك). إعراب (الحياة):",
+        "options": [
+          "فاعل",
+          "اسم ما دام",
+          "خبر ما دام",
+          "مفعول به ثانٍ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(خير وسيلة للتقدم أن يكون للوطن ..... الذين يحرصون عليه):",
+        "options": [
+          "أبناؤه",
+          "أبناءه",
+          "أبنائه",
+          "بنيه"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(أنتنّ الفضليات خلقًا). عند دخول (كان):",
+        "options": [
+          "كنتنّ الفضلياتِ خلقًا",
+          "كنتم الفضلياتِ خلقًا",
+          "كنّ الفضلياتُ خلقًا",
+          "كانت الفضلياتُ خلقٌ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(أصبح للعلم أهميةٌ بعد أن كان مهمشًا). اسما الناسخين:",
+        "options": [
+          "أهمية - ضمير مستتر",
+          "ضمير مستتر - ضمير مستتر",
+          "للعلم - مهمشًا",
+          "ضمير مستتر - مهمشًا"
+        ],
+        "ans": 0
+      }
+    ]
+  },
+  {
+    "id": "tf",
+    "title": "صح أم خطأ",
+    "type": "true_false",
+    "desc": "هل الحكم النحوي صحيح أم خاطئ؟",
+    "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M22 11.08V12a10 10 0 1 1-5.93-9.14\"></path><polyline points=\"22 4 12 14.01 9 11.01\"></polyline></svg>",
+    "questions": [
+      {
+        "q": "إذا دخلت كان على الجملة الاسمية أصبح المبتدأ اسمًا لها مرفوعًا والخبر خبرًا لها منصوبًا.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "الفعل (صار) يفيد التحول من حال إلى حال.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "الفعل (ما زال) يعمل عمل كان دون أن يسبقه نفي.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 1
+      },
+      {
+        "q": "أدوات النفي التي تسبق (زال) وأخواتها منها: ما - لا - لن - لم - لمّا.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "الفعل (دام) لا يعمل إلا إذا سبقته (ما) النافية.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 1
+      },
+      {
+        "q": "الفعل (ليس) جامد لا يأتي منه مضارع ولا أمر.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "يأتي من الفعل (ظل) الماضي والمضارع والأمر.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "يأتي الأمر من الفعل (ما برح).",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 1
+      },
+      {
+        "q": "قد يأتي اسم كان ضميرًا مستترًا.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "الجملة الواقعة خبرًا لكان وأخواتها في محل رفع.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 1
+      },
+      {
+        "q": "يجب أن تشتمل جملة الخبر على رابط يربطها باسم الفعل الناسخ.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "قد يتقدم خبر الفعل الناسخ على اسمه.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "في قوله تعالى: (وكان حقًّا علينا نصر المؤمنين) كلمة (حقًّا) اسم كان.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 1
+      },
+      {
+        "q": "(كان) في (كان الله ولا شيء سواه) تامة بمعنى (وُجد).",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "الفعل (زال) التام مضارعه (يزال).",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 1
+      },
+      {
+        "q": "(ما فتئ) و(ما زال) و(ليس) أفعال ملازمة للنقص.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "التاء في (ليست) تاء التأنيث ولا محل لها من الإعراب.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "التاء في (لستُ) اسم ليس في محل رفع.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "في (أصبح الطالب ذهنه متوقد) خبر أصبح جملة فعلية.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 1
+      },
+      {
+        "q": "في (ظل الطالب يقظًا) - (ظنّ الطالب الامتحان سهلًا) كلمة (الطالب) مرفوعة في الجملتين.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      }
+    ]
+  },
+  {
+    "id": "genius",
+    "title": "تحدي العباقرة",
+    "type": "genius",
+    "desc": "أسئلة تحليلية أعمق في كان وأخواتها",
+    "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.663 17h4.673M12 3a6 6 0 0 0-6 6c0 1.887.454 2.921 1.5 4.5.5.75 1 1.5 1 2.5h7c0-1 .5-1.75 1-2.5C17.546 11.921 18 10.887 18 9a6 6 0 0 0-6-6z\"></path></svg>",
+    "questions": [
+      {
+        "q": "(أصبحنا وأصبح الملك مسبّحًا بحمد الله). نوع الفعلين من حيث التمام والنقصان:",
+        "options": [
+          "الأول تام والثاني ناقص",
+          "الأول ناقص والثاني تام",
+          "ناقصان",
+          "تامان"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(كن مع الله تصبح الأفضل). الفعلان:",
+        "options": [
+          "ناقصان",
+          "تامان",
+          "الأول تام والثاني ناقص",
+          "الأول ناقص والثاني تام"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "قال تعالى: (فسبحان الله حين تُمسون وحين تُصبحون). الفعلان:",
+        "options": [
+          "تامان",
+          "ناقصان",
+          "الأول تام والثاني ناقص",
+          "الأول ناقص والثاني تام"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(لو ظل الظلم لفني العالم) - (لقد ظل الناس في ترقب). نوع (ظل) على الترتيب:",
+        "options": [
+          "تام - ناقص",
+          "ناقص - تام",
+          "ناقص - ناقص",
+          "تام - تام"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(بات الحارس وهو متعب) - (طلبت من ربي أن يحرس أبنائي فكان الحارس). إعراب (الحارس):",
+        "options": [
+          "اسم بات - فاعل",
+          "فاعل - فاعل",
+          "اسم بات - اسم بات",
+          "فاعل - خبر بات"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(اجتهدت نخبة كيان فكان الأمل المرجو) - (... فكان الأمل مرجوًّا). إعراب (الأمل):",
+        "options": [
+          "فاعل - اسم كان",
+          "اسم كان - فاعل",
+          "اسم كان في الجملتين",
+          "فاعل في الجملتين"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "قال الشاعر: (إذا كان الشتاء فأدفئوني ... فإن الشيخ يُهرمه الشتاء). إعراب (الشتاء) في الموضعين:",
+        "options": [
+          "فاعل - فاعل",
+          "اسم كان - فاعل",
+          "اسم كان - اسم إن",
+          "فاعل - خبر إن"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(أصبح النيل ماؤه عذب) - (أصبح النيل ماؤه عذبًا). إعراب (ماؤه) على الترتيب:",
+        "options": [
+          "مبتدأ - بدل",
+          "بدل - مبتدأ",
+          "مبتدأ في الجملتين",
+          "بدل في الجملتين"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(أصبح الطالب ذهنه متوقد) - (أصبح الطالب متوقدًا ذهنه). نوع الخبر على الترتيب:",
+        "options": [
+          "جملة اسمية - مفرد",
+          "مفرد - جملة اسمية",
+          "مفرد - مفرد",
+          "جملة اسمية - جملة اسمية"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(كنتم حريصين على التفوق) - (كنتم على التفوق حريصين). نوع الخبر على الترتيب:",
+        "options": [
+          "مفرد - مفرد",
+          "مفرد - شبه جملة",
+          "شبه جملة - مفرد",
+          "شبه جملة - شبه جملة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(ما زال الأمل موجودًا - إنما الحق قوة - أقدّر الطالب ما دام مجتهدًا). نوع (ما) على الترتيب:",
+        "options": [
+          "نافية - كافة - مصدرية ظرفية",
+          "نافية - موصولة - كافة",
+          "موصولة - كافة - مصدرية",
+          "نافية - كافة - موصولة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "قال الشاعر: (ومن عجبٍ أكون لكم دواءً ... فأصبحتم لي الداءَ العُضالا). خبرا الناسخين:",
+        "options": [
+          "دواء - الداء",
+          "لكم - لي",
+          "ضمير مستتر - ضمير بارز",
+          "ضمير مستتر - ضمير مستتر"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "قال الشاعر: (ما كان يومًا ولا يومين موعدنا ... بل كان عمرًا). إعراب (يومًا - موعدنا):",
+        "options": [
+          "خبر كان - اسم كان",
+          "ظرف زمان - خبر كان",
+          "اسم كان - خبر كان",
+          "خبر كان - مضاف إليه"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "قال الشاعر: (أضحى إمام الهدى المأمون مشتغلًا ... بالدين والناس بالدنيا مشاغيل). خبر أضحى ونوعه:",
+        "options": [
+          "مشتغلًا - مفرد",
+          "الهدى - مفرد",
+          "بالدين - شبه جملة",
+          "بالدنيا مشاغيل - جملة اسمية"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(سيظل الحبّ له لغة يتحدث بها العاشقون). خبر الناسخ ونوعه:",
+        "options": [
+          "(له لغة) جملة اسمية",
+          "(لغة) مفرد",
+          "(يتحدث) جملة فعلية",
+          "(له) شبه جملة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(أصبح على كل مصري مخلص العملُ بإتقان). نوع خبر أصبح:",
+        "options": [
+          "شبه جملة",
+          "مفرد",
+          "جملة اسمية",
+          "جملة فعلية"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(لن يدوم الخصام - سنبقى أقوياء ما دامت قوتنا - أعمل ما دمت حيًّا). إعراب ما بعد (يدوم/دامت/حيًّا):",
+        "options": [
+          "فاعل - فاعل - خبر ما دام",
+          "اسم ما دام - فاعل - خبر ما دام",
+          "فاعل - اسم ما دام - حال",
+          "فاعل - فاعل - حال"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(يكون النجاح محققًا حيث يكون الاجتهاد). المعطيات صحيحة ما عدا:",
+        "options": [
+          "كلمة (محققًا) حال",
+          "كلمة (النجاح) اسم يكون",
+          "كلمة (الاجتهاد) فاعل",
+          "(يكون) الثاني فعل تام"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "قال تعالى: (وقال شركاؤهم ما كنتم إيانا تعبدون). خبر (كان):",
+        "options": [
+          "جملة (تعبدون)",
+          "إيانا",
+          "شركاؤهم",
+          "تاء الفاعل"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(تأوي الطيور إلى أعشاشها فتبيت). الصحيح من المعطيات:",
+        "options": [
+          "الفعل (تبيت) تام والفاعل مستتر",
+          "خبر (تبيت) محذوف",
+          "الفعل (تبيت) ناقص",
+          "التاء في (تبيت) تاء الفاعل"
+        ],
+        "ans": 0
+      }
+    ]
+  }
+];
+
+    // --- محرك الصوت للمؤثرات التفاعلية ---
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function initAudio() {
+        if (!audioCtx) {
+            audioCtx = new AudioContext();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    }
+
+    function playTone(freq, type, duration, vol = 0.1) {
+        if (!audioCtx) return;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+    }
+
+    function playCorrect() {
+        initAudio();
+        playTone(523.25, 'sine', 0.1, 0.1); 
+        setTimeout(() => playTone(659.25, 'sine', 0.1, 0.1), 100); 
+        setTimeout(() => playTone(783.99, 'sine', 0.2, 0.15), 200); 
+        setTimeout(() => playTone(1046.50, 'sine', 0.4, 0.2), 300); 
+        triggerConfetti();
+    }
+
+    function playWrong() {
+        initAudio();
+        playTone(300, 'sawtooth', 0.15, 0.1);
+        setTimeout(() => playTone(200, 'sawtooth', 0.25, 0.15), 150);
+        
+        const qBox = document.querySelector('.question-box');
+        if(qBox) {
+            qBox.classList.remove('shake');
+            void qBox.offsetWidth; 
+            qBox.classList.add('shake');
+        }
+    }
+
+    // --- مؤثرات بصرية ---
+    function triggerConfetti() {
+        const colors = ['#f72585', '#4cc9f0', '#fee440', '#00f5d4', '#8b5cf6'];
+        for(let i=0; i<40; i++) {
+            let conf = document.createElement('div');
+            conf.className = 'confetti';
+            conf.style.left = Math.random() * 100 + 'vw';
+            conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            conf.style.animationDuration = (Math.random() * 2 + 1) + 's';
+            document.body.appendChild(conf);
+            setTimeout(() => conf.remove(), 3000);
+        }
+    }
+
+    function shuffleArray(arr) {
+        return arr.map(a => ({sort: Math.random(), value: a}))
+            .sort((a, b) => a.sort - b.sort)
+            .map(a => a.value);
+    }
+
+    function showFeedback(isCorrect, callback) {
+        const modal = document.getElementById('feedback-modal');
+        const icon = document.getElementById('feedback-icon');
+        const title = document.getElementById('feedback-title');
+        
+        if (isCorrect) {
+            playCorrect();
+            icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`;
+            title.textContent = 'إجابة صحيحة، بطل!';
+            title.style.color = 'var(--success)';
+        } else {
+            playWrong();
+            icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>`;
+            title.textContent = 'إجابة خاطئة!';
+            title.style.color = 'var(--danger)';
+        }
+
+        modal.classList.add('active');
+        setTimeout(() => {
+            modal.classList.remove('active');
+            if (callback) callback();
+        }, 1300); // وقت الانتقال للسؤال التالي
+    }
+
+    // --- متغيرات محرك اللعبة ---
+    let currentGame = null;
+    let currentQuestions = [];
+    let qIndex = 0;
+    let animInterval = null;
+    let geniusTimerInterval = null;
+    let wrongAnswers = []; // مصفوفة لتخزين الأخطاء
+
+    // --- التهيئة ---
+    function initApp() {
+        const menuGrid = document.getElementById('menu-grid');
+        menuGrid.innerHTML = '';
+        allGamesData.forEach(game => {
+            const card = document.createElement('div');
+            card.className = 'menu-card';
+            card.innerHTML = `
+                <div class="icon-container">${game.icon}</div>
+                <h3>${game.title}</h3>
+                <p>${game.desc}</p>
+            `;
+            card.onclick = () => startGame(game);
+            menuGrid.appendChild(card);
+        });
+        
+        document.body.addEventListener('touchstart', initAudio, { once: true });
+        document.body.addEventListener('click', initAudio, { once: true });
+    }
+
+    function returnToMenu() {
+        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+        clearInterval(geniusTimerInterval);
+        document.getElementById('game-screen').classList.add('hidden');
+        document.getElementById('home-screen').classList.remove('hidden');
+        document.getElementById('main-header').classList.remove('hidden');
+        document.getElementById('main-footer').classList.remove('hidden');
+    }
+
+    function updateProgress() {
+        document.getElementById('game-progress').innerText = `${qIndex + 1} / ${currentQuestions.length}`;
+    }
+
+    function gameComplete() {
+        const gc = document.getElementById('game-container');
+        playCorrect();
+        setTimeout(playCorrect, 300);
+
+        let score = currentQuestions.length - wrongAnswers.length;
+        let summaryHTML = '';
+
+        if (wrongAnswers.length > 0) {
+            summaryHTML += `
+            <div style="margin-top: 25px; text-align: right; background: #f8fafc; padding: 20px; border-radius: 15px; border: 2px solid #e2e8f0; max-height: 350px; overflow-y: auto;" class="errors-list">
+                <h3 style="color: var(--danger); margin-bottom: 15px; text-align: center; font-size: 1.4rem;">الأسئلة التي أخطأت فيها 📝</h3>
+                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 15px;">`;
+            
+            wrongAnswers.forEach((item, index) => {
+                summaryHTML += `
+                <li style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-right: 5px solid var(--danger);">
+                    <div style="font-weight: bold; color: var(--primary); margin-bottom: 8px; font-size: 1.1rem;">${index + 1}. ${item.question}</div>
+                    <div style="color: #64748b; font-size: 1rem; margin-bottom: 5px;">إجابتك: <span style="color: var(--danger); text-decoration: line-through;">${item.selected}</span></div>
+                    <div style="color: var(--success); font-weight: bold; font-size: 1.1rem;">الإجابة الصحيحة: ${item.correct}</div>
+                </li>`;
+            });
+            summaryHTML += `</ul></div>`;
+        } else {
+            summaryHTML += `<p style="color: var(--success); font-size: 1.5rem; font-weight: bold; margin-top: 20px;">أداء مثالي! لم تخطئ في أي سؤال 🌟</p>`;
+        }
+
+        gc.innerHTML = `
+            <div style="text-align:center; padding: 40px 20px; background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+                <div style="display:flex; justify-content:center; margin-bottom: 20px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21h10"/><path d="M12 17v4"/><path d="M12 3v14"/><path d="M5 7h14"/><path d="M12 3l-4 4 4 4 4-4-4-4z"/></svg>
+                </div>
+                <h2 style="color: var(--primary); margin-bottom: 10px; font-size:2rem; font-weight:800;">انتهت اللعبة!</h2>
+                <p style="font-size: 1.4rem; margin-bottom: 10px; color:#64748b; font-weight:bold;">نتيجتك: ${score} من ${currentQuestions.length}</p>
+                ${summaryHTML}
+                <button class="btn back-btn" style="font-size:1.1rem; padding:15px 30px; margin-top: 18px;" onclick="returnToMenu()">العودة للقائمة الرئيسية</button>
+            </div>
+        `;
+    }
+
+    function startGame(gameData) {
+        initAudio();
+        currentGame = gameData;
+        currentQuestions = shuffleArray([...gameData.questions]);
+        qIndex = 0;
+        wrongAnswers = []; // تصفير قائمة الأخطاء
+        
+        document.getElementById('home-screen').classList.add('hidden');
+        document.getElementById('main-header').classList.add('hidden');
+        document.getElementById('main-footer').classList.add('hidden');
+        document.getElementById('game-screen').classList.remove('hidden');
+        document.getElementById('game-title').innerText = gameData.title;
+        
+        renderNextState();
+    }
+
+    function renderNextState() {
+        if (qIndex >= currentQuestions.length) {
+            gameComplete();
+            return;
+        }
+
+        const gc = document.getElementById('game-container');
+        gc.innerHTML = '';
+        updateProgress();
+
+        if (currentGame.type === 'mcq') {
+            renderMCQ(gc);
+        } else if (currentGame.type === 'bubbles') {
+            renderBubbles(gc);
+        } else if (currentGame.type === 'shooting') {
+            renderShooting(gc);
+        } else if (currentGame.type === 'true_false') {
+            renderTrueFalse(gc);
+        } else if (currentGame.type === 'genius') {
+            renderGenius(gc);
+        }
+    }
+
+    // --- أنماط الألعاب ---
+
+    // 1. اختيارات (MCQ)
+    function renderMCQ(container) {
+        clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const btnContainer = document.createElement('div');
+        btnContainer.className = 'options-grid';
+        
+        let isAnswered = false;
+
+        shuffledOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.innerText = opt;
+            btn.onclick = () => {
+                if(isAnswered) return;
+                isAnswered = true;
+
+                if (opt === correctText) {
+                    btn.classList.add('btn-correct');
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    btn.classList.add('btn-wrong');
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+            btnContainer.appendChild(btn);
+        });
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        container.appendChild(qBox);
+        container.appendChild(btnContainer);
+    }
+
+    // 2. صح أم خطأ
+    function renderTrueFalse(container) {
+        clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        const tfContainer = document.createElement('div');
+        tfContainer.className = 'tf-grid';
+        
+        let isAnswered = false;
+
+        // ترتيب ثابت (صح يميناً وخطأ يساراً)
+        const fixedOptions = ["صح", "خطأ"];
+
+        fixedOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.style.flex = '1';
+            btn.style.minWidth = '200px';
+            btn.style.fontSize = '2rem';
+            btn.style.padding = '30px';
+            btn.style.justifyContent = 'center';
+            
+            if(opt === "صح") {
+                btn.style.background = "linear-gradient(to bottom, #10b981, #059669)";
+                btn.style.borderBottomColor = "#047857";
+            } else {
+                btn.style.background = "linear-gradient(to bottom, #ef4444, #dc2626)";
+                btn.style.borderBottomColor = "#b91c1c";
+            }
+
+            btn.innerText = opt;
+            
+            btn.onclick = () => {
+                if(isAnswered) return;
+                isAnswered = true;
+
+                if (opt === correctText) {
+                    btn.classList.add('btn-correct');
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    btn.classList.add('btn-wrong');
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+            tfContainer.appendChild(btn);
+        });
+
+        container.appendChild(qBox);
+        container.appendChild(tfContainer);
+    }
+
+    // 5. تحدي العباقرة (سؤال بعدّاد زمني)
+    function renderGenius(container) {
+        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+        clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const wrap = document.createElement('div');
+        wrap.className = 'genius-wrap';
+
+        const badge = document.createElement('div');
+        badge.className = 'genius-badge';
+        badge.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.663 17h4.673M12 3a6 6 0 0 0-6 6c0 1.887.454 2.921 1.5 4.5.5.75 1 1.5 1 2.5h7c0-1 .5-1.75 1-2.5C17.546 11.921 18 10.887 18 9a6 6 0 0 0-6-6z"></path></svg> تحدي العباقرة`;
+
+        const timerTrack = document.createElement('div');
+        timerTrack.className = 'genius-timer-track';
+        const timerBar = document.createElement('div');
+        timerBar.className = 'genius-timer-bar';
+        timerTrack.appendChild(timerBar);
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.style.background = 'rgba(255,255,255,0.95)';
+        qBox.innerText = qData.q;
+
+        const optContainer = document.createElement('div');
+        optContainer.className = 'genius-options';
+
+        let isAnswered = false;
+        const TOTAL_TIME = 12000; // 12 ثانية لكل سؤال
+        let startTime = Date.now();
+
+        function finishQuestion(isCorrect, selectedText) {
+            if (isAnswered) return;
+            isAnswered = true;
+            clearInterval(geniusTimerInterval);
+            if (!isCorrect) {
+                wrongAnswers.push({ question: qData.q, correct: correctText, selected: selectedText || "انتهى الوقت!" });
+            }
+            showFeedback(isCorrect, () => { qIndex++; renderNextState(); });
+        }
+
+        shuffledOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.innerText = opt;
+            btn.onclick = () => {
+                if (isAnswered) return;
+                if (opt === correctText) {
+                    btn.classList.add('btn-correct');
+                    finishQuestion(true, opt);
+                } else {
+                    btn.classList.add('btn-wrong');
+                    finishQuestion(false, opt);
+                }
+            };
+            optContainer.appendChild(btn);
+        });
+
+        wrap.appendChild(badge);
+        wrap.appendChild(timerTrack);
+        container.appendChild(wrap);
+        container.appendChild(qBox);
+        container.appendChild(optContainer);
+
+        geniusTimerInterval = setInterval(() => {
+            if (isAnswered) { clearInterval(geniusTimerInterval); return; }
+            const elapsed = Date.now() - startTime;
+            const pct = Math.max(0, 100 - (elapsed / TOTAL_TIME) * 100);
+            timerBar.style.width = pct + '%';
+            if (elapsed >= TOTAL_TIME) {
+                clearInterval(geniusTimerInterval);
+                finishQuestion(false, null);
+            }
+        }, 80);
+    }
+
+    // 3. الفقاعات المتساقطة
+    function renderBubbles(container) {
+        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        const area = document.createElement('div');
+        area.className = 'bubbles-area';
+
+        let bubbles = [];
+        let isAnswered = false;
+
+        shuffledOptions.forEach((opt, index) => {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.innerHTML = `<span>${opt}</span>`;
+            
+            let leftPos = 2 + (index * 24); 
+            bubble.style.left = leftPos + '%';
+            
+            let topPos = -100 - (Math.random() * 80);
+            bubble.style.top = topPos + 'px';
+            
+            let speed = 0.55 + Math.random() * 0.45; 
+
+            bubble.onclick = () => {
+                if (isAnswered) return;
+                isAnswered = true;
+                clearInterval(animInterval); clearInterval(geniusTimerInterval);
+                if (opt === correctText) {
+                    bubble.style.background = 'var(--success)';
+                    bubble.style.color = 'white';
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    bubble.style.background = 'var(--danger)';
+                    bubble.style.color = 'white';
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+
+            area.appendChild(bubble);
+            bubbles.push({ el: bubble, top: topPos, speed: speed, isCorrect: opt === correctText, active: true });
+        });
+
+        container.appendChild(qBox);
+        container.appendChild(area);
+        
+        let hint = document.createElement('div');
+        hint.style.textAlign = 'center';
+        hint.style.marginTop = '15px';
+        hint.style.color = 'var(--primary)';
+        hint.style.fontWeight = 'bold';
+        hint.style.fontSize = '1.1rem';
+        hint.innerHTML = `💡 اضغط على الفقاعة التي تحمل الإجابة الصحيحة قبل أن تسقط!`;
+        container.appendChild(hint);
+
+        let areaHeight = 400;
+
+        animInterval = setInterval(() => {
+            if (isAnswered) return;
+            bubbles.forEach(b => {
+                if (!b.active) return;
+                b.top += b.speed;
+                b.el.style.top = b.top + 'px';
+                
+                b.el.style.transform = `translateX(${Math.sin(b.top / 20) * 5}px)`;
+
+                if (b.top > areaHeight) {
+                    b.active = false;
+                    b.el.style.display = 'none';
+                    if (b.isCorrect && !isAnswered) {
+                        isAnswered = true;
+                        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+                        wrongAnswers.push({ question: qData.q, correct: correctText, selected: "سقطت دون اختيار" });
+                        showFeedback(false, () => { qIndex++; renderNextState(); });
+                    }
+                }
+            });
+        }, 30);
+    }
+
+    // 4. التنشين
+    function renderShooting(container) {
+        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        const area = document.createElement('div');
+        area.className = 'shooting-area';
+
+        let isAnswered = false;
+
+        shuffledOptions.forEach((opt, index) => {
+            const bird = document.createElement('div');
+            bird.className = 'target-bird';
+            
+            bird.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> <span>${opt}</span>`;
+            
+            let topPos = 15 + (index * 20); 
+            bird.style.top = topPos + '%';
+            
+            let pos = (index % 2 === 0) ? -200 : window.innerWidth;
+            let speed = (Math.random() * 1.0 + 0.8) * ((index % 2 === 0) ? 1 : -1);
+            
+            bird.style.left = pos + 'px';
+
+            bird.onclick = () => {
+                if(isAnswered) return;
+                isAnswered = true;
+
+                if (opt === correctText) {
+                    bird.style.background = 'var(--success)';
+                    bird.style.color = 'white';
+                    bird.style.borderColor = 'white';
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    bird.style.background = 'var(--danger)';
+                    bird.style.color = 'white';
+                    bird.style.borderColor = 'white';
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+
+            area.appendChild(bird);
+
+            animInterval = setInterval(() => {
+                if (isAnswered) return;
+                pos += speed;
+                if (pos > window.innerWidth + 50) pos = -250;
+                if (pos < -250) pos = window.innerWidth + 50;
+                bird.style.left = pos + 'px';
+            }, 30);
+        });
+
+        container.appendChild(qBox);
+        container.appendChild(area);
+        
+        let hint = document.createElement('div');
+        hint.style.textAlign = 'center';
+        hint.style.marginTop = '15px';
+        hint.style.color = 'var(--primary)';
+        hint.style.fontWeight = 'bold';
+        hint.style.fontSize = '1.1rem';
+        hint.innerHTML = `💡 اضغط على الفقاعة التي تحمل الإجابة الصحيحة قبل أن تسقط!`;
+        container.appendChild(hint);
+
+        let areaHeight = 400;
+
+        animInterval = setInterval(() => {
+            if (isAnswered) return;
+            bubbles.forEach(b => {
+                if (!b.active) return;
+                b.top += b.speed;
+                b.el.style.top = b.top + 'px';
+                
+                b.el.style.transform = `translateX(${Math.sin(b.top / 20) * 5}px)`;
+
+                if (b.top > areaHeight) {
+                    b.active = false;
+                    b.el.style.display = 'none';
+                    if (b.isCorrect && !isAnswered) {
+                        isAnswered = true;
+                        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+                        wrongAnswers.push({ question: qData.q, correct: correctText, selected: "سقطت دون اختيار" });
+                        showFeedback(false, () => { qIndex++; renderNextState(); });
+                    }
+                }
+            });
+        }, 20);
+    }
+
+    // 4. التنشين
+    function renderShooting(container) {
+        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        const area = document.createElement('div');
+        area.className = 'shooting-area';
+
+        let isAnswered = false;
+
+        shuffledOptions.forEach((opt, index) => {
+            const bird = document.createElement('div');
+            bird.className = 'target-bird';
+            
+            bird.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> <span>${opt}</span>`;
+            
+            let topPos = 15 + (index * 20); 
+            bird.style.top = topPos + '%';
+            
+            let pos = (index % 2 === 0) ? -200 : window.innerWidth;
+            let speed = (Math.random() * 2.5 + 1.5) * ((index % 2 === 0) ? 1 : -1);
+            
+            bird.style.left = pos + 'px';
+
+            bird.onclick = () => {
+                if(isAnswered) return;
+                isAnswered = true;
+
+                if (opt === correctText) {
+                    bird.style.background = 'var(--success)';
+                    bird.style.color = 'white';
+                    bird.style.borderColor = 'white';
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    bird.style.background = 'var(--danger)';
+                    bird.style.color = 'white';
+                    bird.style.borderColor = 'white';
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+
+            area.appendChild(bird);
+
+            animInterval = setInterval(() => {
+                if (isAnswered) return;
+                pos += speed;
+                if (pos > window.innerWidth + 50) pos = -250;
+                if (pos < -250) pos = window.innerWidth + 50;
+                bird.style.left = pos + 'px';
+            }, 20);
+        });
+
+        container.appendChild(qBox);
+        container.appendChild(area);
+        
+        let hint = document.createElement('div');
+        hint.style.textAlign = 'center';
+        hint.style.marginTop = '15px';
+        hint.style.color = 'var(--primary)';
+        hint.style.fontWeight = 'bold';
+        hint.style.fontSize = '1.1rem';
+        hint.style.display = 'flex';
+        hint.style.alignItems = 'center';
+        hint.style.justifyContent = 'center';
+        hint.style.gap = '8px';
+        hint.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> اضغط على الإجابة الصحيحة وهي تتحرك لاصطيادها!`;
+        container.appendChild(hint);
+    }
+
+    window.onload = initApp;
+</script>
+</body>
+</html>

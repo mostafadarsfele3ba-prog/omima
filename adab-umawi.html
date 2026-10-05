@@ -1,0 +1,2092 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>الأدب الأموي - الصف الأول الثانوي</title>
+    <!-- استدعاء خط احترافي -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f766e;      
+            --primary-light: #14b8a6; 
+            --secondary: #0e7490;    
+            --success: #10b981;      
+            --danger: #ef4444;       
+            --warning: #f59e0b;      
+            --dark: #1e293b;         
+            --light: #f8fafc;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Cairo', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #effcf9;
+            background-image: radial-gradient(#a7dcd4 1.5px, transparent 1.5px);
+            background-size: 25px 25px;
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .hidden { display: none !important; }
+        
+        /* --- الهيدر الرئيسي --- */
+        .header-main {
+            background: linear-gradient(135deg, #042f2e, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px 20px 90px 20px; 
+            text-align: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title-line1 {
+            font-size: clamp(1.1rem, 4vw, 1.5rem); 
+            font-weight: 700;
+            color: #ccfbf1;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 1px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .title-line2 {
+            font-size: clamp(2.5rem, 10vw, 4.5rem); 
+            font-weight: 900;
+            background: linear-gradient(to right, #fde047, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.5));
+            line-height: 1.1;
+        }
+
+        .header-main h2 { font-size: clamp(1rem, 3vw, 1.3rem); font-weight: 600; color: #f0fdfa; margin-bottom: 8px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);}
+        .header-main p { font-size: clamp(0.9rem, 2.5vw, 1.1rem); font-weight: 600; background: rgba(0,0,0,0.3); display: inline-block; padding: 6px 20px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 4px 6px rgba(0,0,0,0.1);}
+
+        .header-wave {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: auto;
+            z-index: 1;
+        }
+
+        /* --- الأزرار --- */
+        .btn {
+            background: linear-gradient(to bottom, var(--primary-light), var(--primary));
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-bottom: 3px solid rgba(0,0,0,0.3);
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.2); }
+        .btn:active { transform: translateY(2px); border-bottom: 0px; margin-top: 3px; }
+        .btn-correct { filter: brightness(1.2); pointer-events: none; border-bottom-width: 0; transform: translateY(2px);}
+        .btn-wrong { filter: brightness(0.8); pointer-events: none; border-bottom-width: 0; transform: translateY(2px);}
+
+        /* --- الشاشة الرئيسية --- */
+        #home-screen {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .grid-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1000px;
+            padding-bottom: 80px;
+        }
+
+        .menu-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.025);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .menu-card::before {
+            content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .menu-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border-color: rgba(20, 184, 166, 0.3); }
+        .menu-card:hover::before { opacity: 1; }
+        
+        .menu-card .icon-container {
+            width: 80px; height: 80px;
+            margin: 0 auto 15px auto;
+            background: linear-gradient(135deg, #ccfbf1, #99f6e4);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: inset 0 3px 6px rgba(255,255,255,0.8), 0 4px 8px rgba(0,0,0,0.05);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .menu-card .icon-container svg {
+            width: 40px; height: 40px; stroke: #0f766e; fill: none;
+            stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+        }
+        .menu-card:hover .icon-container { transform: scale(1.1) rotate(10deg); }
+        .menu-card h3 { font-size: 1.4rem; color: var(--dark); font-weight: 800; margin-bottom: 8px;}
+        .menu-card p { font-size: 1rem; color: #64748b; font-weight: 600;}
+
+        /* --- شاشة اللعب --- */
+        #game-screen {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-nav {
+            background: white;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+        }
+        .back-btn { background: #e2e8f0; color: var(--dark); border-bottom: 3px solid #cbd5e1; padding: 8px 15px;}
+        #game-progress { background: #14b8a6; color: white; padding: 6px 15px; border-radius: 20px;}
+        
+        .game-container {
+            flex: 1;
+            padding: 0 20px 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .question-box {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 16px;
+            text-align: center;
+            font-size: clamp(1.2rem, 4vw, 1.6rem);
+            font-weight: 800;
+            color: #0f766e;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            border-right: 8px solid #0e7490;
+            line-height: 1.6;
+        }
+
+        .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-2px, 0, 0); }
+            20%, 80% { transform: translate3d(4px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+            40%, 60% { transform: translate3d(6px, 0, 0); }
+        }
+
+        /* MCQ Style */
+        .options-grid { display: flex; flex-direction: column; gap: 15px; }
+        .options-grid .btn { padding: 18px; font-size: clamp(1.1rem, 3.5vw, 1.4rem); text-align: right; justify-content: flex-start; border-radius: 12px;}
+
+        /* True/False Style */
+        .tf-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+
+        /* Bubbles Style */
+        .bubbles-area {
+            position: relative; height: 400px;
+            background: linear-gradient(to bottom, #042f2e, #0f766e);
+            border-radius: 16px; overflow: hidden;
+            border: 4px solid #14b8a6; margin-top: 10px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+        .bubble {
+            position: absolute;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(204,251,241,0.9));
+            color: #0f766e;
+            border: 2px solid #ffffff;
+            padding: 10px 5px;
+            border-radius: 30px;
+            font-weight: 800; font-size: clamp(0.85rem, 2vw, 1.05rem);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.2), inset -4px -4px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            width: 22%;
+            transition: transform 0.2s, background 0.2s;
+            z-index: 5;
+        }
+        .bubble:hover { transform: scale(1.05); }
+        .bubble::after {
+            content: ''; position: absolute; top: 10%; left: 15%;
+            width: 20%; height: 20%; background: rgba(255,255,255,0.8);
+            border-radius: 50%; filter: blur(2px);
+        }
+
+        /* Shooting Style */
+        .shooting-area {
+            position: relative; height: 400px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect fill="%23fff7ed" width="100%" height="100%"/><circle fill="%23fed7aa" cx="20%" cy="30%" r="50"/><circle fill="%23fed7aa" cx="80%" cy="60%" r="70"/><circle fill="%23fed7aa" cx="50%" cy="80%" r="40"/></svg>') no-repeat center center;
+            background-size: cover; border-radius: 16px; overflow: hidden;
+            border: 4px solid #14b8a6; margin-top: 10px; box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+        }
+        .target-bird {
+            position: absolute; background: white; color: var(--dark);
+            padding: 10px 20px; border-radius: 30px; font-weight: 800; font-size: clamp(0.95rem, 3vw, 1.15rem);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15); cursor: crosshair;
+            border: 3px solid var(--warning); white-space: nowrap; transition: background 0.2s;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .target-bird:hover { transform: scale(1.05); background: #fffbeb; }
+
+        /* Genius Challenge Style */
+        .genius-wrap {
+            background: linear-gradient(135deg, #431407, #9a3412, #ea580c);
+            border-radius: 16px; padding: 20px; margin-top: 10px;
+            border: 4px solid #fdba74; box-shadow: inset 0 0 25px rgba(0,0,0,0.4), 0 10px 20px rgba(234,88,12,0.35);
+        }
+        .genius-timer-track {
+            width: 100%; height: 14px; background: rgba(0,0,0,0.35);
+            border-radius: 10px; overflow: hidden; margin-bottom: 18px;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        .genius-timer-bar {
+            height: 100%; width: 100%;
+            background: linear-gradient(to right, #fde047, #f59e0b, #ef4444);
+            border-radius: 10px;
+            transition: width 0.1s linear;
+        }
+        .genius-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        @media (max-width: 600px) { .genius-options { grid-template-columns: 1fr; } }
+        .genius-options .btn {
+            padding: 16px 10px; font-size: clamp(1rem, 3vw, 1.25rem);
+            background: linear-gradient(to bottom, #fb923c, #ea580c);
+            border-bottom: 3px solid #7c2d12; border-radius: 14px; min-height: 70px;
+        }
+        .genius-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(253, 224, 71, 0.15); color: #fde047;
+            font-weight: 800; padding: 6px 16px; border-radius: 20px;
+            border: 1px solid rgba(253,224,71,0.4); margin-bottom: 12px; font-size: 0.95rem;
+        }
+
+        /* Modal Overlay */
+        .overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(4px);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .overlay.active { opacity: 1; pointer-events: all; }
+        .modal {
+            background: white; padding: 40px; border-radius: 25px;
+            text-align: center; max-width: 90%; width: 400px;
+            transform: scale(0.7) translateY(50px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+        .overlay.active .modal { transform: scale(1) translateY(0); }
+        .modal-icon { display: flex; justify-content: center; margin-bottom: 20px; }
+
+        /* Summary Errors Scrolling */
+        .errors-list::-webkit-scrollbar { width: 8px; }
+        .errors-list::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
+        .errors-list::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+        .errors-list::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* الفوتر (Footer) */
+        .footer-main {
+            background: var(--dark); color: #cbd5e1;
+            text-align: center; padding: 25px 20px; margin-top: auto;
+            border-top: 4px solid var(--primary);
+        }
+        .footer-main p { margin: 5px 0; font-size: 1.1rem; font-weight: 600;}
+        .footer-main .designer { font-size: 1rem; color: #94a3b8; font-weight: 400;}
+
+        /* Confetti effect */
+        .confetti {
+            position: fixed; top: -10px; width: 12px; height: 12px; z-index: 9999;
+            animation: fall linear forwards; border-radius: 3px;
+        }
+        @keyframes fall { to { transform: translateY(110vh) rotate(720deg); opacity: 0; } }
+
+        .home-link {
+            position: absolute; top: 14px; right: 14px; z-index: 5;
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(255,255,255,0.15); color: #fff; text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.35); border-radius: 30px;
+            padding: 7px 16px; font-weight: 700; font-size: 0.95rem;
+            backdrop-filter: blur(4px); transition: background .2s;
+        }
+        .home-link:hover { background: rgba(255,255,255,0.28); }
+        .school-name { font-size: clamp(1.9rem, 7vw, 3.6rem) !important; }
+        .header-main { padding-top: 56px !important; padding-bottom: 140px !important; }
+        @media (max-width: 600px) { .header-main { padding-bottom: 110px !important; } }
+    </style>
+</head>
+<body>
+
+    <!-- الهيدر -->
+    <header class="header-main" id="main-header">
+        <a class="home-link" href="./index.html"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg> الصفحة الرئيسية</a>
+        <div class="header-content">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap;">
+                
+                <!-- النصوص -->
+                <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <h1 class="title-line1">
+                        درس 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fde047" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                        لعبة
+                    </h1>
+                    <h1 class="title-line2 school-name">أميمة عبدالوهاب عبدالرحمن</h1>
+                    <h2>الصف الأول الثانوي - الفصل الدراسي الأول - الأدب الأموي</h2>
+                    <p style="margin-top: 10px;">الأدب</p>
+                </div>
+            </div>
+        </div>
+        <!-- تموجات زخرفية -->
+        <svg class="header-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#effcf9" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,170.7C960,160,1056,192,1152,208C1248,224,1344,224,1392,224L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+    </header>
+
+    <!-- الشاشة الرئيسية -->
+    <div id="home-screen">
+        <div class="grid-menu" id="menu-grid">
+            <!-- سيتم حقن البطاقات هنا برمجياً -->
+        </div>
+    </div>
+
+    <!-- شاشة اللعب -->
+    <div id="game-screen" class="hidden">
+        <div class="game-nav">
+            <button class="btn back-btn" onclick="returnToMenu()">
+                <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                رجوع
+            </button>
+            <strong id="game-title">عنوان اللعبة</strong>
+            <span id="game-progress">1 / 25</span>
+        </div>
+        <div class="game-container" id="game-container">
+            <!-- سيتم حقن الأسئلة هنا برمجياً -->
+        </div>
+    </div>
+
+    <!-- نافذة الملاحظات السريعة -->
+    <div class="overlay" id="feedback-modal">
+        <div class="modal">
+            <div class="modal-icon" id="feedback-icon"></div>
+            <h2 id="feedback-title" style="font-size: 2.5rem; font-weight: 900;">إجابة صحيحة!</h2>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer class="footer-main" id="main-footer">
+        <p>جميع الحقوق محفوظة &copy; | الأستاذة / أميمة عبدالوهاب عبدالرحمن</p>
+    </footer>
+
+<script>
+    const LESSON_NAME = "الأدب في العصر الأموي";
+    const allGamesData = [
+  {
+    "id": "mcq",
+    "title": "أفهم الدرس",
+    "type": "mcq",
+    "desc": "خصائص الشعر والنثر في العصر الأموي",
+    "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><polygon points=\"11 5 6 9 2 9 2 15 6 15 11 19 11 5\"></polygon><path d=\"M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07\"></path></svg>",
+    "questions": [
+      {
+        "q": "متى بدأ العصر الأموي؟",
+        "options": [
+          "بسيطرة معاوية بن أبي سفيان على الدولة الإسلامية بعد مقتل علي",
+          "بوفاة الرسول ﷺ",
+          "بفتح الأندلس",
+          "بتولي عمر بن عبد العزيز"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "انتقلت عاصمة الخلافة في العصر الأموي إلى:",
+        "options": [
+          "دمشق",
+          "بغداد",
+          "المدينة المنورة",
+          "القاهرة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "من أسباب تطور الشعر في العصر الأموي:",
+        "options": [
+          "اهتمام الخلفاء بالشعراء وظهور الأحزاب والانفتاح على الثقافات",
+          "انعزال العرب عن غيرهم",
+          "تحريم الشعر",
+          "انتهاء الفتوحات"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "الشعر السياسي هو الشعر الذي:",
+        "options": [
+          "يعبر عن الصراعات بين الأحزاب المتنافسة على الحكم",
+          "يمتزج فيه الفخر بالهجاء بين شاعرين",
+          "يصف مفاتن المرأة",
+          "يصور الوجد والوفاء"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "من أسباب انتشار الشعر السياسي:",
+        "options": [
+          "كثرة الأحزاب والصراع على الحكم",
+          "حياة الترف",
+          "انتشار الغناء",
+          "وقت الفراغ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "الأحزاب السياسية في العصر الأموي:",
+        "options": [
+          "الخوارج - الشيعة - الأمويون - الهاشميون",
+          "الأوس - الخزرج - قريش",
+          "الفرس - الروم - العرب",
+          "المهاجرون - الأنصار"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "شعر النقائض هو:",
+        "options": [
+          "معارك هجائية امتزج فيها الفخر بالهجاء والتعصب القبلي",
+          "شعر يعبر عن الصراعات السياسية",
+          "شعر يصف المرأة وصفًا حسيًّا",
+          "شعر يصور العاطفة الصادقة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "من أهم شعراء النقائض:",
+        "options": [
+          "جرير والفرزدق والأخطل",
+          "جميل وكثير وقيس",
+          "عمر بن أبي ربيعة والعرجي",
+          "حسان وكعب بن مالك"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "من أسباب انتشار شعر النقائض:",
+        "options": [
+          "التنافس الشخصي والانتماءات الحزبية ووقت الفراغ",
+          "انتشار الغناء والترف",
+          "الجهاد في سبيل الله",
+          "التمسك بالقيم الأخلاقية"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "كيف تطور الغزل في العصر الأموي؟",
+        "options": [
+          "صار فنًّا قائمًا بذاته بعد أن كان في مقدمات القصائد",
+          "اختفى تمامًا",
+          "ظل في مقدمات القصائد فقط",
+          "اندمج في الشعر السياسي"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "الغزل الحضري (الصريح) يتناول:",
+        "options": [
+          "وصف مفاتن المرأة الحسية",
+          "العاطفة الصادقة والوفاء والطهارة",
+          "الصراعات السياسية",
+          "الفخر والهجاء"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "أشهر شعراء الغزل الصريح:",
+        "options": [
+          "عمر بن أبي ربيعة",
+          "جميل بن معمر",
+          "قيس بن الملوح",
+          "كثير عزة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "من أسباب ازدهار الغزل الصريح:",
+        "options": [
+          "حياة الترف وانتشار الغناء وانصراف شعراء الحجاز عن السياسة",
+          "تعدد الأحزاب",
+          "التنافس الشخصي",
+          "الجهاد"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "الغزل البدوي (العفيف) يتناول:",
+        "options": [
+          "العاطفة الصادقة والوفاء والطهارة والشكوى من الفراق",
+          "مفاتن المرأة الحسية",
+          "الصراع على الحكم",
+          "الفخر بالقبيلة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "من سمات المعاني في الشعر الأموي:",
+        "options": [
+          "أمدّ الإسلام الشعراء بمعانٍ جديدة مع معاودة معاني الجاهليين",
+          "الابتعاد التام عن معاني الدين",
+          "الاقتصار على معاني الجاهلية",
+          "خلوّه من المعاني"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "الألفاظ في الشعر الأموي:",
+        "options": [
+          "بعضها جزل متأثر بالجاهلي وبعضها واضح رقيق متأثر بالقرآن",
+          "كلها غريبة حوشية",
+          "كلها أعجمية",
+          "كلها عامية"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "بناء القصيدة الأموية:",
+        "options": [
+          "التزم الشعراء نظام القصيدة الجاهلية عدا شعراء الغزل في الحجاز",
+          "تخلى الجميع عن المقدمات الطللية",
+          "اقتصرت على غرض واحد دائمًا",
+          "بدأت كلها بالحكمة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "من عوامل ازدهار النثر في العصر الأموي:",
+        "options": [
+          "تعدد الأحزاب وحاجة كل حزب لمتحدثين بارعين",
+          "انتشار الغناء",
+          "حياة الترف",
+          "قلة الفتوحات"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "من عوامل ازدهار الخطابة في العصر الأموي:",
+        "options": [
+          "تعدد الأحزاب والفتن وكثرة الفتوحات",
+          "انتشار الترف",
+          "تحريم الشعر",
+          "انعزال العرب"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "ظهرت الكتابة (الرسائل) حين:",
+        "options": [
+          "دوّن عمر بن الخطاب الدواوين",
+          "تولى معاوية الخلافة",
+          "ظهر عبد الحميد الكاتب",
+          "فُتحت الأندلس"
+        ],
+        "ans": 0
+      }
+    ]
+  },
+  {
+    "id": "bubbles",
+    "title": "الفقاعات المتساقطة",
+    "type": "bubbles",
+    "desc": "حدّد الغرض أو الشاعر أو السمة بسرعة",
+    "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M21.21 15.89A10 10 0 1 1 8 2.83\"></path><path d=\"M22 12A10 10 0 0 0 12 2v10z\"></path></svg>",
+    "questions": [
+      {
+        "q": "قصائد امتزج فيها الفخر بالهجاء:",
+        "options": [
+          "النقائض",
+          "الشعر السياسي",
+          "الغزل العفيف",
+          "شعر الفتوح"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "فن ازدهر بسبب التنازع على الخلافة:",
+        "options": [
+          "الشعر السياسي",
+          "الغزل الصريح",
+          "النقائض",
+          "الرسائل الإخوانية"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "قصائد تصف مفاتن المرأة الحسية:",
+        "options": [
+          "الغزل الصريح",
+          "الغزل العفيف",
+          "النقائض",
+          "الشعر السياسي"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "قصائد تصور الوجد وآلام الهجر:",
+        "options": [
+          "الغزل العفيف",
+          "الغزل الصريح",
+          "النقائض",
+          "شعر الفتوح"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "شاعر من شعراء الغزل العفيف:",
+        "options": [
+          "جميل بن معمر",
+          "عمر بن أبي ربيعة",
+          "الفرزدق",
+          "الأخطل"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "صاحبة جميل في شعره:",
+        "options": [
+          "بثينة",
+          "ليلى",
+          "عزة",
+          "هند"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "شاعر من شعراء النقائض:",
+        "options": [
+          "الفرزدق",
+          "كثير عزة",
+          "قيس بن ذريح",
+          "العرجي"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "حزب لم يكن من الأحزاب الأموية المتنافسة:",
+        "options": [
+          "المهاجرون",
+          "الخوارج",
+          "الشيعة",
+          "الهاشميون"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "فن مخاطبة الجمهور والتأثير فيه:",
+        "options": [
+          "الخطابة",
+          "الرسائل",
+          "النقائض",
+          "الغزل"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "فن نثري تتواصل به الدولة مع ولاتها:",
+        "options": [
+          "الرسائل",
+          "الخطابة",
+          "النقائض",
+          "الوصايا"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "الرسائل المتبادلة بين الحكام في السياسة والحرب:",
+        "options": [
+          "الديوانية",
+          "الإخوانية",
+          "الدينية",
+          "الأدبية"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "الرسائل في التهنئة والتعزية والعتاب:",
+        "options": [
+          "الإخوانية",
+          "الديوانية",
+          "الدينية",
+          "السياسية"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "تتسم الرسائل الديوانية بـ:",
+        "options": [
+          "جفاف العاطفة",
+          "حرارة العاطفة",
+          "الغزل",
+          "الهجاء"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "أشهر كتّاب ديوان الرسائل الأموي:",
+        "options": [
+          "عبد الحميد الكاتب",
+          "ابن المقفع",
+          "الجاحظ",
+          "حسان بن ثابت"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "عاصمة الخلافة الأموية:",
+        "options": [
+          "دمشق",
+          "بغداد",
+          "الكوفة",
+          "مكة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "مؤسس الدولة الأموية:",
+        "options": [
+          "معاوية بن أبي سفيان",
+          "عبد الملك بن مروان",
+          "الوليد بن عبد الملك",
+          "عمر بن عبد العزيز"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "يبدأ الخطيب الأموي خطبته غالبًا بـ:",
+        "options": [
+          "حمد الله والصلاة",
+          "الغزل",
+          "الهجاء",
+          "وصف الأطلال"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "يبدأ الشاعر الأموي قصيدته غالبًا بـ:",
+        "options": [
+          "وصف الأطلال",
+          "الحمد",
+          "أما بعد",
+          "الحكمة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "شعر الفتوحات في العصر الأموي:",
+        "options": [
+          "امتداد لصدر الإسلام",
+          "غرض جديد تمامًا",
+          "اختفى نهائيًّا",
+          "من النقائض"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "سبب أن تضم النقائض أغراضًا حرّمها الإسلام:",
+        "options": [
+          "الهجاء والتعصب",
+          "الحكمة",
+          "الزهد",
+          "المدح النبوي"
+        ],
+        "ans": 0
+      }
+    ]
+  },
+  {
+    "id": "shoot",
+    "title": "التنشين والاصطياد",
+    "type": "shooting",
+    "desc": "اصطد الغرض الشعري وسببه",
+    "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><circle cx=\"12\" cy=\"12\" r=\"6\"></circle><circle cx=\"12\" cy=\"12\" r=\"2\"></circle></svg>",
+    "questions": [
+      {
+        "q": "(أبيات لابن قيس الرقيات يفخر فيها بحمزة وعلي وجعفر والزبير). يظهر سبب الشعر السياسي:",
+        "options": [
+          "تعدد الأحزاب وانتماء الشاعر لابن الزبير",
+          "صراع الكفر والإسلام",
+          "فخر الشاعر بنفسه",
+          "كراهية الأحزاب"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(وجدوا معاوية المبارك عزمه) لجرير. الغرض وسببه:",
+        "options": [
+          "السياسي - تعدد الأحزاب",
+          "النقائض - التنافس",
+          "الغزل العفيف - البداوة",
+          "الغزل الصريح - الغناء"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(تعلّق روحي روحها قبل خلقنا) لجميل. الغرض:",
+        "options": [
+          "الغزل العفيف",
+          "الغزل الصريح",
+          "الشعر السياسي",
+          "النقائض"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(كأنها قينة غنّت على عود) للعرجي. سبب ازدهار الغزل الصريح:",
+        "options": [
+          "انتشار الموسيقا والغناء",
+          "حياة الرخاء",
+          "كثرة الأحزاب",
+          "البعد عن القيم"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(وجدت قومك فقّأوا من لؤمهم ... عينيك). تعريف النقائض:",
+        "options": [
+          "معارك شعرية يمتزج فيها الفخر بالهجاء",
+          "قصائد فخر بالقوم",
+          "مزج الغزل العفيف بالصريح",
+          "معارك شعرية حديثة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(أنا عنكم بني أمية مزورّ). سبب ظهور الشعر السياسي:",
+        "options": [
+          "تعدد الأحزاب - ينفي انتماءه لبني أمية",
+          "تعدد الأحزاب - يؤكد انتماءه",
+          "التنافس الشخصي",
+          "التعصب القبلي"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(ألم تسأل الدار القديمة) لجميل. يؤكد:",
+        "options": [
+          "ارتباط الشعراء بالبدايات القديمة",
+          "إفراد قصائد للغزل",
+          "وصف الخمر",
+          "وصف الرحلة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(فأعجبها من عيشها ظل غرفة) لعمر. سبب ازدهار الغزل الصريح:",
+        "options": [
+          "شيوع الرخاء والترف",
+          "التحلل الأخلاقي",
+          "الاختلاط بالأمم",
+          "ضعف الدين"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(قضيت بينكما قضاءً فيصلا) للأخطل ورد جرير. المسمى وسببه:",
+        "options": [
+          "النقائض - التنافس الشخصي ووقت الفراغ",
+          "السياسي - كثرة الأحزاب",
+          "النقائض - الغناء",
+          "النقائض - الثراء"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(إن الذي سمك السماء بنى لنا ... بيتًا) للفرزدق. سبب النقائض:",
+        "options": [
+          "التعصب القبلي",
+          "الأحزاب السياسية",
+          "التنافس الشخصي",
+          "أوقات الفراغ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(قل للمعرّض ... من شاء قاس عنانه بعناني) لجرير. سبب النقائض:",
+        "options": [
+          "التنافس الشخصي",
+          "الأحزاب السياسية",
+          "أوقات الفراغ",
+          "التعصب القبلي"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(أشارت بطرف العين خيفة أهلها) لعمر. المسمى:",
+        "options": [
+          "الغزل الصريح",
+          "الغزل العفيف",
+          "الفخر الذاتي",
+          "النقائض"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(وأظهرت نور الحق) لكثير. تطور الشعر الأموي:",
+        "options": [
+          "معانٍ دينية جديدة أمدّ بها الإسلام",
+          "التمسك بالبدء بالغزل",
+          "التنقل بين الأغراض",
+          "مزج الصور"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(أبيات لجرير يهجو فيها بني عقال). سمة المعاني:",
+        "options": [
+          "معاودة المعاني الجاهلية كالهجاء",
+          "الالتزام بالنهج القديم",
+          "الاعتماد على التصوير",
+          "إفراد قصائد للغزل"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(يتقي الله في الأمور وقد أفلح من كان همّه الاتقاء). سمة المعاني:",
+        "options": [
+          "معانٍ جديدة أمدّ بها الإسلام",
+          "معاني الهجاء الجاهلية",
+          "خيال من البيئة",
+          "التقيد بنظام القصيدة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(صلى الملائكة الذين تخيّروا ... والصالحون عليك). يظهر:",
+        "options": [
+          "تأثر الشاعر بمعجم القرآن والحديث",
+          "إفراد قصائد للغزل",
+          "التمسك بالبدايات",
+          "غرابة الألفاظ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(بل هواي الذي أُجنّ وأُبدي ... لبني هاشم) للكميت. الغرض وسببه:",
+        "options": [
+          "السياسي - تعدد الأحزاب",
+          "الغزل العفيف - القيم",
+          "الغزل الصريح - الترف",
+          "النقائض - الصراعات"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(يا آل مروان إن الله فضّلكم) لجرير. الغرض:",
+        "options": [
+          "الشعر السياسي",
+          "شعر النقائض",
+          "الغزل العفيف",
+          "الغزل الصريح"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(الله طوّقك الخلافة والهدى) في مدح عبد الملك. يؤكد:",
+        "options": [
+          "الشعر السياسي - تعدد الأحزاب",
+          "النقائض - التنافس",
+          "النقائض - التعصب",
+          "السياسي - الترف"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(إن الوليد أمير المؤمنين له ... حق من الله تفضيل). الغرض:",
+        "options": [
+          "الشعر السياسي",
+          "الفخر القبلي",
+          "الفخر الذاتي",
+          "النقائض"
+        ],
+        "ans": 0
+      }
+    ]
+  },
+  {
+    "id": "tf",
+    "title": "صح أم خطأ",
+    "type": "true_false",
+    "desc": "هل المعلومة الأدبية صحيحة أم خاطئة؟",
+    "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M22 11.08V12a10 10 0 1 1-5.93-9.14\"></path><polyline points=\"22 4 12 14.01 9 11.01\"></polyline></svg>",
+    "questions": [
+      {
+        "q": "بدأ العصر الأموي بسيطرة معاوية بن أبي سفيان على الدولة الإسلامية.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "انتقلت الخلافة في العصر الأموي من الجزيرة إلى بغداد.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 1
+      },
+      {
+        "q": "الشعر السياسي من الأغراض الشعرية الجديدة في العصر الأموي.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "كان لكل حزب سياسي شعراء مناصرون له.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "النقائض قصائد يمتزج فيها الغزل العفيف بالغزل الصريح.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 1
+      },
+      {
+        "q": "جمعت النقائض أغراضًا كان الإسلام قد حرّمها كالهجاء والتعصب القبلي.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "وجود وقت فراغ يقضيه الناس في متابعة المعارك الشعرية من أسباب انتشار النقائض.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "الغزل في العصر الأموي ظل مقدمة تقليدية للقصائد فقط.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 1
+      },
+      {
+        "q": "عمر بن أبي ربيعة من أشهر شعراء الغزل العفيف.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 1
+      },
+      {
+        "q": "الغزل العفيف يبتعد عن مفاتن المرأة ويهتم بمعاني الوفاء والطهارة.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "قيس بن الملوح (مجنون ليلى) من شعراء الغزل العفيف.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "انصراف شعراء الحجاز عن الشعر السياسي من أسباب ازدهار الغزل الصريح.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "شعر الفتوحات في العصر الأموي امتداد لشعر الفتوحات في صدر الإسلام.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "هجر الشعراء الأمويون نظام القصيدة الجاهلية تمامًا.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 1
+      },
+      {
+        "q": "نال النثر في العصر الأموي حظًّا من التطور يفوق الشعر.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "من سمات الخطبة الأموية الاقتباس من القرآن والحديث والاستشهاد بالحكم والأمثال.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "الرسائل الديوانية تمتاز بحرارة العاطفة.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 1
+      },
+      {
+        "q": "الرسائل الدينية يتناول فيها الكتّاب والعلماء بعض القضايا الدينية.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "اتساع رقعة الدولة وحاجة الخلفاء لمكاتبة الولاة من عوامل ازدهار الرسائل.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "من خصائص الرسائل الأموية رداءة الصياغة وإهمال اختيار الألفاظ.",
+        "options": [
+          "صح",
+          "خطأ"
+        ],
+        "ans": 1
+      }
+    ]
+  },
+  {
+    "id": "genius",
+    "title": "تحدي العباقرة",
+    "type": "genius",
+    "desc": "استنتج من الأبيات والنصوص",
+    "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9.663 17h4.673M12 3a6 6 0 0 0-6 6c0 1.887.454 2.921 1.5 4.5.5.75 1 1.5 1 2.5h7c0-1 .5-1.75 1-2.5C17.546 11.921 18 10.887 18 9a6 6 0 0 0-6-6z\"></path></svg>",
+    "questions": [
+      {
+        "q": "قال ذو الرمة: (وعينان قال الله كونا فكانتا ... فعولان بالألباب ما تفعل الخمر). الغرض والدليل:",
+        "options": [
+          "الغزل العفيف لأن حديثه عن العينين لم يكن خادشًا للحياء",
+          "الغزل الصريح لأنه وصف حسي خادش",
+          "النقائض لأنه هجا خصمه",
+          "السياسي لأنه يتحدث عن الأحزاب"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "قال عمر بن أبي ربيعة: (فلهونا يومنا حتى إذا ...). سمة من سمات الغزل الصريح:",
+        "options": [
+          "الحديث عن المفاتن التي تخدش الحياء",
+          "الحديث عن الجوانب الأخلاقية في المرأة",
+          "الحديث عن الوجد والشكوى",
+          "الحديث عن المفاتن المعنوية"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "قال العرجي: (كأن عيون الرمل أهدت عيونها ... وأعناق الظباء استعرنها). العبارة التي لا تعد صوابًا:",
+        "options": [
+          "اعتمد الشعراء على التصوير الكلي في صورهم",
+          "اعتمد الشعراء على التصوير في إبراز المعاني",
+          "استمد الشعراء الخيال من البيئة",
+          "اعتمد الشعراء على الصور الحسية الجزئية"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "قال الفرزدق: (أطعتك يا إبليس سبعين حجة ... فلما انتهى شيبي وتمّ تمامي - فررت إلى ربي). سمة المعاني:",
+        "options": [
+          "أمدّ الإسلام الشعراء بثروة من المعاني الجديدة",
+          "عودة الشعراء إلى الفخر الجاهلي",
+          "عودة الشعراء إلى الهجاء الجاهلي",
+          "ابتعاد الشعراء عن المعاني الدينية"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "قال قيس بن ذريح: (فوا كبدي من شدة الشوق والأسى ... وواكبدي إني إلى الله راجع). العبارة التي لا تعد صوابًا:",
+        "options": [
+          "البيتان من الغزل الصريح واعتمد فيهما على التصوير",
+          "البيتان من الغزل العفيف يصوران الوجد والشكوى",
+          "ظهر فيهما تأثر الشاعر بأسلوب القرآن",
+          "ظهرت فيهما الموسيقا واضحة النغم"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "قال وضاح اليمن: (كذلك يُبعثون وهم فرادى ... ليوم فيه توفية الحقوق). تطور الشعر من حيث الألفاظ:",
+        "options": [
+          "جاءت الألفاظ واضحة معبرة متأثرة بالقرآن والحديث",
+          "جاءت الألفاظ بدوية خشنة",
+          "جاءت سهلة غير متأثرة بالدين",
+          "جاءت موغلة في الغرابة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "(ينام عن التقوى ويوقظه الخنا). ورود كلمة (التقوى) يشير إلى:",
+        "options": [
+          "تأثر الشعر الأموي بالقرآن والسنة",
+          "التزام الشاعر وقوة تدينه",
+          "تأثر الشاعر بألفاظ الجاهلية",
+          "غرابة الألفاظ في الشعر الأموي"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "قال قيس بن ذريح: (لقد فُضّلت لبنى على الناس مثلما ... على ألف شهر فُضّلت ليلة القدر). ورود (ليلة القدر) يفسر بـ:",
+        "options": [
+          "تأثر ألفاظ الشعر الأموي بالقرآن والسنة",
+          "التدين الذي التزمه الشعراء",
+          "الثقافة الدينية الواسعة للشاعر وحده",
+          "بعد الشعر عن الألفاظ الفاحشة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "قال قيس بن الملوح: (سأمضي إلى سبل الهلاك وإنني ... لمحتسب راضٍ مشيئة خالقي). الغرض وأهم سماته:",
+        "options": [
+          "الغزل العفيف - تصوير الوجد والشكوى والوفاء",
+          "الغزل الصريح - تصوير المفاتن الحسية",
+          "الشعر السياسي - إبراز مبادئ الأحزاب",
+          "النقائض - الجمع بين الفخر والهجاء"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "قال الأخطل: (حيّ المنازل بين السفح والرحب ... لم يبق غير وشوم النار والحطب). الغرض الذي بدأ به:",
+        "options": [
+          "الوقوف على الأطلال",
+          "الغزل الصريح",
+          "الحكمة",
+          "الحمد والصلاة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "رسالة معاوية إلى ابن الزبير: (لو كانت الدنيا بيني وبينك لسلمتها إليك... فإن جنة الله عرضها السموات والأرض). سمة غير متحققة:",
+        "options": [
+          "تضمين الحكم والأمثال",
+          "جودة الصياغة واختيار الألفاظ",
+          "الاقتباس من القرآن الكريم",
+          "التأثر بروح الإسلام"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "كتب عبد الحميد لأهله: (وقد كتبت والأيام تزيدنا منكم بعدًا...). نوع الرسالة:",
+        "options": [
+          "إخوانية",
+          "ديوانية",
+          "دينية",
+          "سياسية"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "علل: نال النثر الأموي حظًّا من التطور يفوق الشعر.",
+        "options": [
+          "لتعدد الأحزاب وحاجة كل حزب لمتحدثين بارعين واتساع الدولة",
+          "لتحريم الخلفاء الشعر",
+          "لانصراف الناس عن الغناء",
+          "لقلة الفتن والاضطرابات"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "خطبة الحجاج: (إني أنذر ثم لا أنظر، وأحذّر ثم لا أعذر...). سمة ليست من سمات الخطبة الأموية:",
+        "options": [
+          "الإطناب وطول الجمل",
+          "حسن اختيار الألفاظ وتنسيق الجمل",
+          "تضمين الحكم والأمثال",
+          "قوة التأثير في السامعين"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "الدور الذي قام به عبد الحميد الكاتب:",
+        "options": [
+          "كان له أثر كبير في ازدهار فن الرسائل وتطويره",
+          "أسس شعر النقائض",
+          "أول من وقف على الأطلال",
+          "أسس الغزل العفيف"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "لماذا انصرف شعراء الحجاز عن الشعر السياسي إلى الغزل؟",
+        "options": [
+          "لانتقال الخلافة إلى دمشق وابتعادهم عن مركز الصراع",
+          "لتحريم الشعر السياسي",
+          "لضعف لغتهم",
+          "لكثرة الفتوحات في الحجاز"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "كيف خالف شعراء الغزل في الحجاز منهج القصيدة القديمة؟",
+        "options": [
+          "جعلوا للغزل قصائد مستقلة",
+          "بدأوا بالأطلال",
+          "عددوا الأغراض في القصيدة",
+          "أكثروا من الهجاء"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "لماذا تُعد النقائض فنًّا جديدًا رغم اعتمادها على أغراض قديمة؟",
+        "options": [
+          "لأنها معارك شعرية متبادلة بين الشعراء يرد فيها كل منهم على الآخر",
+          "لأنها خلت من الفخر والهجاء",
+          "لأنها ظهرت في الجاهلية",
+          "لأنها تصف المرأة"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "أي العبارات الآتية تمثل الشعر السياسي لا النقائض؟",
+        "options": [
+          "شعر يمدح الخليفة ويؤكد أحقية بني أمية بالحكم",
+          "شعر يهجو فيه جرير الفرزدق",
+          "شعر يفخر فيه الشاعر بقبيلته ويهجو قبيلة خصمه",
+          "شعر يرد فيه الأخطل على جرير"
+        ],
+        "ans": 0
+      },
+      {
+        "q": "ما الفرق الجوهري بين الغزل الصريح والغزل العفيف؟",
+        "options": [
+          "الصريح يصف المفاتن الحسية والعفيف يصور العاطفة الصادقة والوفاء",
+          "الصريح بدوي والعفيف حضري",
+          "الصريح يبدأ بالأطلال والعفيف بالحمد",
+          "لا فرق بينهما"
+        ],
+        "ans": 0
+      }
+    ]
+  }
+];
+
+    // --- محرك الصوت للمؤثرات التفاعلية ---
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function initAudio() {
+        if (!audioCtx) {
+            audioCtx = new AudioContext();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    }
+
+    function playTone(freq, type, duration, vol = 0.1) {
+        if (!audioCtx) return;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+    }
+
+    function playCorrect() {
+        initAudio();
+        playTone(523.25, 'sine', 0.1, 0.1); 
+        setTimeout(() => playTone(659.25, 'sine', 0.1, 0.1), 100); 
+        setTimeout(() => playTone(783.99, 'sine', 0.2, 0.15), 200); 
+        setTimeout(() => playTone(1046.50, 'sine', 0.4, 0.2), 300); 
+        triggerConfetti();
+    }
+
+    function playWrong() {
+        initAudio();
+        playTone(300, 'sawtooth', 0.15, 0.1);
+        setTimeout(() => playTone(200, 'sawtooth', 0.25, 0.15), 150);
+        
+        const qBox = document.querySelector('.question-box');
+        if(qBox) {
+            qBox.classList.remove('shake');
+            void qBox.offsetWidth; 
+            qBox.classList.add('shake');
+        }
+    }
+
+    // --- مؤثرات بصرية ---
+    function triggerConfetti() {
+        const colors = ['#f72585', '#4cc9f0', '#fee440', '#00f5d4', '#8b5cf6'];
+        for(let i=0; i<40; i++) {
+            let conf = document.createElement('div');
+            conf.className = 'confetti';
+            conf.style.left = Math.random() * 100 + 'vw';
+            conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            conf.style.animationDuration = (Math.random() * 2 + 1) + 's';
+            document.body.appendChild(conf);
+            setTimeout(() => conf.remove(), 3000);
+        }
+    }
+
+    function shuffleArray(arr) {
+        return arr.map(a => ({sort: Math.random(), value: a}))
+            .sort((a, b) => a.sort - b.sort)
+            .map(a => a.value);
+    }
+
+    function showFeedback(isCorrect, callback) {
+        const modal = document.getElementById('feedback-modal');
+        const icon = document.getElementById('feedback-icon');
+        const title = document.getElementById('feedback-title');
+        
+        if (isCorrect) {
+            playCorrect();
+            icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`;
+            title.textContent = 'إجابة صحيحة، بطل!';
+            title.style.color = 'var(--success)';
+        } else {
+            playWrong();
+            icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>`;
+            title.textContent = 'إجابة خاطئة!';
+            title.style.color = 'var(--danger)';
+        }
+
+        modal.classList.add('active');
+        setTimeout(() => {
+            modal.classList.remove('active');
+            if (callback) callback();
+        }, 1300); // وقت الانتقال للسؤال التالي
+    }
+
+    // --- متغيرات محرك اللعبة ---
+    let currentGame = null;
+    let currentQuestions = [];
+    let qIndex = 0;
+    let animInterval = null;
+    let geniusTimerInterval = null;
+    let wrongAnswers = []; // مصفوفة لتخزين الأخطاء
+
+    // --- التهيئة ---
+    function initApp() {
+        const menuGrid = document.getElementById('menu-grid');
+        menuGrid.innerHTML = '';
+        allGamesData.forEach(game => {
+            const card = document.createElement('div');
+            card.className = 'menu-card';
+            card.innerHTML = `
+                <div class="icon-container">${game.icon}</div>
+                <h3>${game.title}</h3>
+                <p>${game.desc}</p>
+            `;
+            card.onclick = () => startGame(game);
+            menuGrid.appendChild(card);
+        });
+        
+        document.body.addEventListener('touchstart', initAudio, { once: true });
+        document.body.addEventListener('click', initAudio, { once: true });
+    }
+
+    function returnToMenu() {
+        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+        clearInterval(geniusTimerInterval);
+        document.getElementById('game-screen').classList.add('hidden');
+        document.getElementById('home-screen').classList.remove('hidden');
+        document.getElementById('main-header').classList.remove('hidden');
+        document.getElementById('main-footer').classList.remove('hidden');
+    }
+
+    function updateProgress() {
+        document.getElementById('game-progress').innerText = `${qIndex + 1} / ${currentQuestions.length}`;
+    }
+
+    function gameComplete() {
+        const gc = document.getElementById('game-container');
+        playCorrect();
+        setTimeout(playCorrect, 300);
+
+        let score = currentQuestions.length - wrongAnswers.length;
+        let summaryHTML = '';
+
+        if (wrongAnswers.length > 0) {
+            summaryHTML += `
+            <div style="margin-top: 25px; text-align: right; background: #f8fafc; padding: 20px; border-radius: 15px; border: 2px solid #e2e8f0; max-height: 350px; overflow-y: auto;" class="errors-list">
+                <h3 style="color: var(--danger); margin-bottom: 15px; text-align: center; font-size: 1.4rem;">الأسئلة التي أخطأت فيها 📝</h3>
+                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 15px;">`;
+            
+            wrongAnswers.forEach((item, index) => {
+                summaryHTML += `
+                <li style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-right: 5px solid var(--danger);">
+                    <div style="font-weight: bold; color: var(--primary); margin-bottom: 8px; font-size: 1.1rem;">${index + 1}. ${item.question}</div>
+                    <div style="color: #64748b; font-size: 1rem; margin-bottom: 5px;">إجابتك: <span style="color: var(--danger); text-decoration: line-through;">${item.selected}</span></div>
+                    <div style="color: var(--success); font-weight: bold; font-size: 1.1rem;">الإجابة الصحيحة: ${item.correct}</div>
+                </li>`;
+            });
+            summaryHTML += `</ul></div>`;
+        } else {
+            summaryHTML += `<p style="color: var(--success); font-size: 1.5rem; font-weight: bold; margin-top: 20px;">أداء مثالي! لم تخطئ في أي سؤال 🌟</p>`;
+        }
+
+        gc.innerHTML = `
+            <div style="text-align:center; padding: 40px 20px; background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+                <div style="display:flex; justify-content:center; margin-bottom: 20px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21h10"/><path d="M12 17v4"/><path d="M12 3v14"/><path d="M5 7h14"/><path d="M12 3l-4 4 4 4 4-4-4-4z"/></svg>
+                </div>
+                <h2 style="color: var(--primary); margin-bottom: 10px; font-size:2rem; font-weight:800;">انتهت اللعبة!</h2>
+                <p style="font-size: 1.4rem; margin-bottom: 10px; color:#64748b; font-weight:bold;">نتيجتك: ${score} من ${currentQuestions.length}</p>
+                ${summaryHTML}
+                <button class="btn back-btn" style="font-size:1.1rem; padding:15px 30px; margin-top: 18px;" onclick="returnToMenu()">العودة للقائمة الرئيسية</button>
+            </div>
+        `;
+    }
+
+    function startGame(gameData) {
+        initAudio();
+        currentGame = gameData;
+        currentQuestions = shuffleArray([...gameData.questions]);
+        qIndex = 0;
+        wrongAnswers = []; // تصفير قائمة الأخطاء
+        
+        document.getElementById('home-screen').classList.add('hidden');
+        document.getElementById('main-header').classList.add('hidden');
+        document.getElementById('main-footer').classList.add('hidden');
+        document.getElementById('game-screen').classList.remove('hidden');
+        document.getElementById('game-title').innerText = gameData.title;
+        
+        renderNextState();
+    }
+
+    function renderNextState() {
+        if (qIndex >= currentQuestions.length) {
+            gameComplete();
+            return;
+        }
+
+        const gc = document.getElementById('game-container');
+        gc.innerHTML = '';
+        updateProgress();
+
+        if (currentGame.type === 'mcq') {
+            renderMCQ(gc);
+        } else if (currentGame.type === 'bubbles') {
+            renderBubbles(gc);
+        } else if (currentGame.type === 'shooting') {
+            renderShooting(gc);
+        } else if (currentGame.type === 'true_false') {
+            renderTrueFalse(gc);
+        } else if (currentGame.type === 'genius') {
+            renderGenius(gc);
+        }
+    }
+
+    // --- أنماط الألعاب ---
+
+    // 1. اختيارات (MCQ)
+    function renderMCQ(container) {
+        clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const btnContainer = document.createElement('div');
+        btnContainer.className = 'options-grid';
+        
+        let isAnswered = false;
+
+        shuffledOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.innerText = opt;
+            btn.onclick = () => {
+                if(isAnswered) return;
+                isAnswered = true;
+
+                if (opt === correctText) {
+                    btn.classList.add('btn-correct');
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    btn.classList.add('btn-wrong');
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+            btnContainer.appendChild(btn);
+        });
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        container.appendChild(qBox);
+        container.appendChild(btnContainer);
+    }
+
+    // 2. صح أم خطأ
+    function renderTrueFalse(container) {
+        clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        const tfContainer = document.createElement('div');
+        tfContainer.className = 'tf-grid';
+        
+        let isAnswered = false;
+
+        // ترتيب ثابت (صح يميناً وخطأ يساراً)
+        const fixedOptions = ["صح", "خطأ"];
+
+        fixedOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.style.flex = '1';
+            btn.style.minWidth = '200px';
+            btn.style.fontSize = '2rem';
+            btn.style.padding = '30px';
+            btn.style.justifyContent = 'center';
+            
+            if(opt === "صح") {
+                btn.style.background = "linear-gradient(to bottom, #10b981, #059669)";
+                btn.style.borderBottomColor = "#047857";
+            } else {
+                btn.style.background = "linear-gradient(to bottom, #ef4444, #dc2626)";
+                btn.style.borderBottomColor = "#b91c1c";
+            }
+
+            btn.innerText = opt;
+            
+            btn.onclick = () => {
+                if(isAnswered) return;
+                isAnswered = true;
+
+                if (opt === correctText) {
+                    btn.classList.add('btn-correct');
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    btn.classList.add('btn-wrong');
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+            tfContainer.appendChild(btn);
+        });
+
+        container.appendChild(qBox);
+        container.appendChild(tfContainer);
+    }
+
+    // 5. تحدي العباقرة (سؤال بعدّاد زمني)
+    function renderGenius(container) {
+        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+        clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const wrap = document.createElement('div');
+        wrap.className = 'genius-wrap';
+
+        const badge = document.createElement('div');
+        badge.className = 'genius-badge';
+        badge.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.663 17h4.673M12 3a6 6 0 0 0-6 6c0 1.887.454 2.921 1.5 4.5.5.75 1 1.5 1 2.5h7c0-1 .5-1.75 1-2.5C17.546 11.921 18 10.887 18 9a6 6 0 0 0-6-6z"></path></svg> تحدي العباقرة`;
+
+        const timerTrack = document.createElement('div');
+        timerTrack.className = 'genius-timer-track';
+        const timerBar = document.createElement('div');
+        timerBar.className = 'genius-timer-bar';
+        timerTrack.appendChild(timerBar);
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.style.background = 'rgba(255,255,255,0.95)';
+        qBox.innerText = qData.q;
+
+        const optContainer = document.createElement('div');
+        optContainer.className = 'genius-options';
+
+        let isAnswered = false;
+        const TOTAL_TIME = 12000; // 12 ثانية لكل سؤال
+        let startTime = Date.now();
+
+        function finishQuestion(isCorrect, selectedText) {
+            if (isAnswered) return;
+            isAnswered = true;
+            clearInterval(geniusTimerInterval);
+            if (!isCorrect) {
+                wrongAnswers.push({ question: qData.q, correct: correctText, selected: selectedText || "انتهى الوقت!" });
+            }
+            showFeedback(isCorrect, () => { qIndex++; renderNextState(); });
+        }
+
+        shuffledOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'btn';
+            btn.innerText = opt;
+            btn.onclick = () => {
+                if (isAnswered) return;
+                if (opt === correctText) {
+                    btn.classList.add('btn-correct');
+                    finishQuestion(true, opt);
+                } else {
+                    btn.classList.add('btn-wrong');
+                    finishQuestion(false, opt);
+                }
+            };
+            optContainer.appendChild(btn);
+        });
+
+        wrap.appendChild(badge);
+        wrap.appendChild(timerTrack);
+        container.appendChild(wrap);
+        container.appendChild(qBox);
+        container.appendChild(optContainer);
+
+        geniusTimerInterval = setInterval(() => {
+            if (isAnswered) { clearInterval(geniusTimerInterval); return; }
+            const elapsed = Date.now() - startTime;
+            const pct = Math.max(0, 100 - (elapsed / TOTAL_TIME) * 100);
+            timerBar.style.width = pct + '%';
+            if (elapsed >= TOTAL_TIME) {
+                clearInterval(geniusTimerInterval);
+                finishQuestion(false, null);
+            }
+        }, 80);
+    }
+
+    // 3. الفقاعات المتساقطة
+    function renderBubbles(container) {
+        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        const area = document.createElement('div');
+        area.className = 'bubbles-area';
+
+        let bubbles = [];
+        let isAnswered = false;
+
+        shuffledOptions.forEach((opt, index) => {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.innerHTML = `<span>${opt}</span>`;
+            
+            let leftPos = 2 + (index * 24); 
+            bubble.style.left = leftPos + '%';
+            
+            let topPos = -100 - (Math.random() * 80);
+            bubble.style.top = topPos + 'px';
+            
+            let speed = 0.55 + Math.random() * 0.45; 
+
+            bubble.onclick = () => {
+                if (isAnswered) return;
+                isAnswered = true;
+                clearInterval(animInterval); clearInterval(geniusTimerInterval);
+                if (opt === correctText) {
+                    bubble.style.background = 'var(--success)';
+                    bubble.style.color = 'white';
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    bubble.style.background = 'var(--danger)';
+                    bubble.style.color = 'white';
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+
+            area.appendChild(bubble);
+            bubbles.push({ el: bubble, top: topPos, speed: speed, isCorrect: opt === correctText, active: true });
+        });
+
+        container.appendChild(qBox);
+        container.appendChild(area);
+        
+        let hint = document.createElement('div');
+        hint.style.textAlign = 'center';
+        hint.style.marginTop = '15px';
+        hint.style.color = 'var(--primary)';
+        hint.style.fontWeight = 'bold';
+        hint.style.fontSize = '1.1rem';
+        hint.innerHTML = `💡 اضغط على الفقاعة التي تحمل الإجابة الصحيحة قبل أن تسقط!`;
+        container.appendChild(hint);
+
+        let areaHeight = 400;
+
+        animInterval = setInterval(() => {
+            if (isAnswered) return;
+            bubbles.forEach(b => {
+                if (!b.active) return;
+                b.top += b.speed;
+                b.el.style.top = b.top + 'px';
+                
+                b.el.style.transform = `translateX(${Math.sin(b.top / 20) * 5}px)`;
+
+                if (b.top > areaHeight) {
+                    b.active = false;
+                    b.el.style.display = 'none';
+                    if (b.isCorrect && !isAnswered) {
+                        isAnswered = true;
+                        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+                        wrongAnswers.push({ question: qData.q, correct: correctText, selected: "سقطت دون اختيار" });
+                        showFeedback(false, () => { qIndex++; renderNextState(); });
+                    }
+                }
+            });
+        }, 30);
+    }
+
+    // 4. التنشين
+    function renderShooting(container) {
+        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        const area = document.createElement('div');
+        area.className = 'shooting-area';
+
+        let isAnswered = false;
+
+        shuffledOptions.forEach((opt, index) => {
+            const bird = document.createElement('div');
+            bird.className = 'target-bird';
+            
+            bird.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> <span>${opt}</span>`;
+            
+            let topPos = 15 + (index * 20); 
+            bird.style.top = topPos + '%';
+            
+            let pos = (index % 2 === 0) ? -200 : window.innerWidth;
+            let speed = (Math.random() * 1.0 + 0.8) * ((index % 2 === 0) ? 1 : -1);
+            
+            bird.style.left = pos + 'px';
+
+            bird.onclick = () => {
+                if(isAnswered) return;
+                isAnswered = true;
+
+                if (opt === correctText) {
+                    bird.style.background = 'var(--success)';
+                    bird.style.color = 'white';
+                    bird.style.borderColor = 'white';
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    bird.style.background = 'var(--danger)';
+                    bird.style.color = 'white';
+                    bird.style.borderColor = 'white';
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+
+            area.appendChild(bird);
+
+            animInterval = setInterval(() => {
+                if (isAnswered) return;
+                pos += speed;
+                if (pos > window.innerWidth + 50) pos = -250;
+                if (pos < -250) pos = window.innerWidth + 50;
+                bird.style.left = pos + 'px';
+            }, 30);
+        });
+
+        container.appendChild(qBox);
+        container.appendChild(area);
+        
+        let hint = document.createElement('div');
+        hint.style.textAlign = 'center';
+        hint.style.marginTop = '15px';
+        hint.style.color = 'var(--primary)';
+        hint.style.fontWeight = 'bold';
+        hint.style.fontSize = '1.1rem';
+        hint.innerHTML = `💡 اضغط على الفقاعة التي تحمل الإجابة الصحيحة قبل أن تسقط!`;
+        container.appendChild(hint);
+
+        let areaHeight = 400;
+
+        animInterval = setInterval(() => {
+            if (isAnswered) return;
+            bubbles.forEach(b => {
+                if (!b.active) return;
+                b.top += b.speed;
+                b.el.style.top = b.top + 'px';
+                
+                b.el.style.transform = `translateX(${Math.sin(b.top / 20) * 5}px)`;
+
+                if (b.top > areaHeight) {
+                    b.active = false;
+                    b.el.style.display = 'none';
+                    if (b.isCorrect && !isAnswered) {
+                        isAnswered = true;
+                        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+                        wrongAnswers.push({ question: qData.q, correct: correctText, selected: "سقطت دون اختيار" });
+                        showFeedback(false, () => { qIndex++; renderNextState(); });
+                    }
+                }
+            });
+        }, 20);
+    }
+
+    // 4. التنشين
+    function renderShooting(container) {
+        clearInterval(animInterval); clearInterval(geniusTimerInterval);
+        const qData = currentQuestions[qIndex];
+        const correctText = qData.options[qData.ans];
+        const shuffledOptions = shuffleArray([...qData.options]);
+
+        const qBox = document.createElement('div');
+        qBox.className = 'question-box';
+        qBox.innerText = qData.q;
+        
+        const area = document.createElement('div');
+        area.className = 'shooting-area';
+
+        let isAnswered = false;
+
+        shuffledOptions.forEach((opt, index) => {
+            const bird = document.createElement('div');
+            bird.className = 'target-bird';
+            
+            bird.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> <span>${opt}</span>`;
+            
+            let topPos = 15 + (index * 20); 
+            bird.style.top = topPos + '%';
+            
+            let pos = (index % 2 === 0) ? -200 : window.innerWidth;
+            let speed = (Math.random() * 2.5 + 1.5) * ((index % 2 === 0) ? 1 : -1);
+            
+            bird.style.left = pos + 'px';
+
+            bird.onclick = () => {
+                if(isAnswered) return;
+                isAnswered = true;
+
+                if (opt === correctText) {
+                    bird.style.background = 'var(--success)';
+                    bird.style.color = 'white';
+                    bird.style.borderColor = 'white';
+                    showFeedback(true, () => { qIndex++; renderNextState(); });
+                } else {
+                    bird.style.background = 'var(--danger)';
+                    bird.style.color = 'white';
+                    bird.style.borderColor = 'white';
+                    wrongAnswers.push({ question: qData.q, correct: correctText, selected: opt });
+                    showFeedback(false, () => { qIndex++; renderNextState(); });
+                }
+            };
+
+            area.appendChild(bird);
+
+            animInterval = setInterval(() => {
+                if (isAnswered) return;
+                pos += speed;
+                if (pos > window.innerWidth + 50) pos = -250;
+                if (pos < -250) pos = window.innerWidth + 50;
+                bird.style.left = pos + 'px';
+            }, 20);
+        });
+
+        container.appendChild(qBox);
+        container.appendChild(area);
+        
+        let hint = document.createElement('div');
+        hint.style.textAlign = 'center';
+        hint.style.marginTop = '15px';
+        hint.style.color = 'var(--primary)';
+        hint.style.fontWeight = 'bold';
+        hint.style.fontSize = '1.1rem';
+        hint.style.display = 'flex';
+        hint.style.alignItems = 'center';
+        hint.style.justifyContent = 'center';
+        hint.style.gap = '8px';
+        hint.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> اضغط على الإجابة الصحيحة وهي تتحرك لاصطيادها!`;
+        container.appendChild(hint);
+    }
+
+    window.onload = initApp;
+</script>
+</body>
+</html>
